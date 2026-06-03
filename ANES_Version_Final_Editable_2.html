@@ -854,16 +854,7 @@
     </div>
     <div class="cv-mbody">
       <!-- URL externa -->
-      <div class="cv-row">
-        <label>🔗 URL / Enlace externo (Drive, Dropbox, web…)</label>
-        <input type="url" id="cvUrl" placeholder="https://drive.google.com/…">
-      </div>
-      <div class="cv-divider">o</div>
-      <!-- Archivo local -->
-      <div class="cv-row">
-        <label>📂 Cargar archivo PDF / Word desde tu equipo</label>
-        <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="font-size:11px; padding:4px 0;">
-      </div>
+      <!-- archivo local eliminado -->
       <!-- Estado actual -->
       <div class="cv-current" id="cvCurrent" style="display:none;">
         <span>📎</span>
@@ -932,10 +923,12 @@ let isSyncing        = false;
 //  JSONBIN HELPERS
 // ═══════════════════════════════════════════════════════════
 function getBinCfg() {
-  return {
-    key:   localStorage.getItem('anes_bin_key')   || '',
-    binId: localStorage.getItem('anes_bin_id')    || ''
-  };
+const DEFAULT_KEY = '$2a$10$MJ/T9MC/WUUFFP4jOzU0tee1k56ASFkgrMLIu82qUQkOiV6.WtZpy';
+const DEFAULT_BIN_ID = '6a204050da38895dfe81704f';
+return {
+key: localStorage.getItem('anes_bin_key') || DEFAULT_KEY,
+binId: localStorage.getItem('anes_bin_id') || DEFAULT_BIN_ID
+};
 }
 
 function hasBinCfg() {
@@ -1222,28 +1215,16 @@ function closeCV() {
 }
 
 async function saveCV() {
-  const url     = document.getElementById('cvUrl').value.trim();
-  const fileInp = document.getElementById('cvFile');
-  const file    = fileInp.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      cvStore[currentCvNodeId] = { url: e.target.result, name: file.name, type: 'file' };
-      await pushToCloud(false);
-      refreshAllCvBtns();
-      closeCV();
-      showToast('📎 CV vinculado: ' + file.name);
-    };
-    reader.readAsDataURL(file);
-  } else if (url) {
-    cvStore[currentCvNodeId] = { url, name: url, type: 'link' };
-    await pushToCloud(false);
-    refreshAllCvBtns();
-    closeCV();
-    showToast('🔗 CV vinculado correctamente');
-  } else {
-    showToast('⚠ Ingresá una URL o seleccioná un archivo');
-  }
+const url = document.getElementById('cvUrl').value.trim();
+if (url) {
+cvStore[currentCvNodeId] = { url, name: url, type: 'link' };
+await pushToCloud(false);
+refreshAllCvBtns();
+closeCV();
+showToast('🔗 CV vinculado correctamente');
+} else {
+showToast('⚠ Ingresá una URL externa (Drive, Dropbox, etc.)');
+}
 }
 
 async function removeCV() {
