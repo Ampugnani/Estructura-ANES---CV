@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANES – Estructura Organizativa Editable</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap');
+
+  :root {
+    --navy:       #1e2a4a;
+    --navy-mid:   #243255;
+    --blue:       #2e5fa3;
+    --blue-light: #3a72c4;
+    --teal:       #1a7a8a;
+    --gold:       #c9a227;
+    --green:      #2e7d52;
+    --purple:     #7b4fa6;
+    --red:        #c0392b;
+    --orange:     #d4680e;
+    --bg:         #f0f3f8;
+    --border:     #c8d4e8;
+    --text:       #1a2340;
+    --text-muted: #5a6a85;
+    --white:      #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 12px;
+    min-height: 100vh;
+  }
+
+  /* ── TOOLBAR ── */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .toolbar h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+  }
+  .toolbar p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .toolbar-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-gold:hover { background: #e0b42a; }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.85);
+  }
+  .btn-outline:hover { border-color: white; color: white; }
+  .btn-green {
+    background: var(--green);
+    color: white;
+  }
+  .btn-green:hover { background: #2a6f49; }
+
+  .edit-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.6; }
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 28px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .leg-item {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+  }
+  .leg-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    background: var(--navy-mid);
+    color: white;
+    padding: 8px 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+  }
+  .annex-tag {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 20px 28px;
+  }
+
+  /* ── NODE ── */
+  .node {
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    background: white;
+    padding: 9px 12px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s;
+  }
+  .node:hover { box-shadow: 0 3px 10px rgba(46,95,163,0.15); }
+
+  .node-title {
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 1.35;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    pointer-events: none;
+  }
+
+  /* ── EDITABLE NAME ── */
+  .name-field {
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px dashed transparent;
+    outline: none;
+    font-family: 'Barlow', sans-serif;
+    font-size: 10.5px;
+    font-style: italic;
+    color: var(--blue);
+    text-align: center;
+    padding: 1px 3px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    border-radius: 2px;
+  }
+  .name-field:hover {
+    border-bottom-color: var(--blue);
+    background: rgba(46,95,163,0.05);
+  }
+  .name-field:focus {
+    border-bottom-color: var(--gold);
+    background: rgba(201,162,39,0.07);
+    color: var(--navy);
+    font-style: normal;
+  }
+  .name-field.empty {
+    color: #aab5cc;
+    font-style: italic;
+  }
+  .name-field.empty:focus { color: var(--navy); font-style: normal; }
+  .name-field.modified {
+    color: var(--green);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* Color-coded left borders */
+  .node.new-cargo    { border-left: 4px solid var(--green); }
+  .node.homo-cargo   { border-left: 4px solid var(--blue); }
+  .node.rank-cargo   { border-left: 4px solid var(--orange); }
+  .node.eval-cargo   { border-left: 4px solid var(--purple); }
+  .node.derog-cargo  { border-left: 4px solid var(--red); opacity: 0.55; }
+
+  /* Special node types */
+  .node.root-node {
+    background: var(--navy);
+    border-color: var(--navy);
+    min-width: 260px;
+  }
+  .node.root-node .node-title { color: white; font-size: 12px; }
+
+  .node.uai-node {
+    background: #fff9e6;
+    border-color: var(--gold);
+    border-left-width: 1.5px;
+  }
+
+  .node.dg-node {
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+  .node.dg-node .node-title { color: white; }
+  .node.dg-node .name-field { color: rgba(255,255,255,0.85); }
+  .node.dg-node .name-field:hover { background: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.6); }
+  .node.dg-node .name-field:focus { background: rgba(255,255,255,0.15); color: white; border-bottom-color: var(--gold); }
+
+  .node.exec-node {
+    background: var(--navy-mid);
+    border-color: var(--navy-mid);
+  }
+  .node.exec-node .node-title { color: white; }
+  .node.exec-node .name-field { color: rgba(255,255,255,0.75); }
+
+  .node.coord-node {
+    background: #f0f7fa;
+    border: 1.5px dashed var(--teal);
+  }
+  .node.coord-node .node-title { color: var(--teal); font-size: 9px; }
+
+  /* Note box */
+  .note-box {
+    background: #fff8e1;
+    border-left: 3px solid var(--gold);
+    padding: 7px 12px;
+    font-size: 10px;
+    color: #5a4500;
+    border-radius: 0 4px 4px 0;
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+
+  /* ── TREE CONNECTORS ── */
+  .v-line { width: 2px; background: var(--border); }
+  .h-line { height: 2px; background: var(--border); flex: 1; align-self: flex-start; }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  /* ── DG BLOCK ── */
+  .dg-block { border: 2px solid var(--blue); border-radius: 6px; overflow: hidden; }
+  .dg-block + .dg-block { margin-top: 14px; }
+  .dg-head {
+    background: var(--blue);
+    padding: 9px 14px;
+    text-align: center;
+  }
+  .dg-head .node-title { color: white; font-size: 10.5px; }
+  .dg-head .name-field { color: rgba(255,255,255,0.85); }
+  .dg-head .name-field:hover  { background: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.5); }
+  .dg-head .name-field:focus  { background: rgba(255,255,255,0.15); color: white; border-bottom-color: var(--gold); }
+  .dg-body { background: white; padding: 12px; }
+
+  /* ── SUBTREE ── */
+  .subtree {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 12px;
+    background: #fafbfd;
+    margin-top: 12px;
+  }
+  .subtree-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+
+  /* ── TREE CENTER ── */
+  .tree-center { display: flex; flex-direction: column; align-items: center; }
+  .branch-row  { display: flex; gap: 0; align-items: flex-start; position: relative; justify-content: center; }
+  .branch-item { display: flex; flex-direction: column; align-items: center; padding: 0 8px; }
+  .branch-item .v-top { width: 2px; height: 20px; background: var(--border); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--navy);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transform: translateY(60px);
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── CV ZONE ── */
+  .cv-zone {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 1.5px dashed var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .cv-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(46,95,163,0.05); }
+  .cv-btn.has-cv { border-style: solid; border-color: var(--teal); color: var(--teal); background: rgba(26,122,138,0.07); }
+  .cv-btn.has-cv:hover { background: rgba(26,122,138,0.15); }
+  .dg-head .cv-btn { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); }
+  .dg-head .cv-btn:hover { border-color: rgba(255,255,255,0.8); color: white; background: rgba(255,255,255,0.1); }
+  .dg-head .cv-btn.has-cv { border-style: solid; border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.12); }
+
+  /* ── CV MODAL ── */
+  .cv-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,18,40,0.55); z-index: 500;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(2px);
+  }
+  .cv-overlay.open { display: flex; }
+  .cv-modal {
+    background: white; border-radius: 8px; width: 420px; max-width: 95vw;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3); overflow: hidden;
+    animation: mIn 0.18s ease;
+  }
+  @keyframes mIn { from { transform:scale(0.95); opacity:0; } to { transform:scale(1); opacity:1; } }
+  .cv-mhead {
+    background: var(--navy); padding: 14px 18px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+  }
+  .cv-mhead h3 { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; color:white; letter-spacing:1px; text-transform:uppercase; line-height:1.3; }
+  .cv-mhead p  { font-size:10px; color:var(--gold); margin-top:3px; font-style:italic; }
+  .cv-mclose   { background:none; border:none; color:rgba(255,255,255,0.6); font-size:18px; cursor:pointer; padding:0 0 0 12px; line-height:1; flex-shrink:0; }
+  .cv-mclose:hover { color:white; }
+  .cv-mbody { padding:18px; display:flex; flex-direction:column; gap:12px; }
+  .cv-row   { display:flex; flex-direction:column; gap:5px; }
+  .cv-row label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); }
+  .cv-row input { font-family:'Barlow',sans-serif; font-size:11px; padding:7px 10px; border:1.5px solid var(--border); border-radius:4px; outline:none; color:var(--text); transition:border-color 0.15s; }
+  .cv-row input:focus { border-color:var(--blue); }
+  .cv-divider { text-align:center; font-size:10px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; position:relative; }
+  .cv-divider::before,.cv-divider::after { content:''; position:absolute; top:50%; width:38%; height:1px; background:var(--border); }
+  .cv-divider::before { left:0; } .cv-divider::after { right:0; }
+  .cv-current { background:rgba(26,122,138,0.07); border:1px solid rgba(26,122,138,0.3); border-radius:4px; padding:8px 10px; display:flex; align-items:center; gap:8px; font-size:10px; color:var(--teal); }
+  .cv-current a { color:var(--teal); font-weight:600; text-decoration:none; word-break:break-all; }
+  .cv-current a:hover { text-decoration:underline; }
+  .cv-mfoot { padding:12px 18px; background:var(--bg); border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:8px; }
+  .cv-mfoot .btn { font-size:11px; padding:6px 14px; }
+  .btn-danger { background:transparent; border:1.5px solid var(--red); color:var(--red); }
+  .btn-danger:hover { background:var(--red); color:white; }
+
+  /* ── PRINT ── */
+  @media print {
+    .toolbar, .legend, .cv-zone, .cv-overlay { display: none !important; }
+    .name-field { border-bottom: none !important; }
+    body { background: white; }
+    .content { padding: 12px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-left">
+    <div>
+      <h1>ANES</h1>
+      <p>Estructura Organizativa · Versión Final</p>
+    </div>
+    <span class="edit-badge">✏ Editable</span>
+  </div>
+  <div class="toolbar-right">
+    <span id="syncIndicator" style="font-size:10px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.5);">💾 Solo local</span>
+    <button class="btn btn-outline" onclick="openCfg()" title="Configurar sincronización en la nube">⚙ Nube</button>
+    <button class="btn btn-outline" onclick="exportJSON()">⬇ Exportar</button>
+    <button class="btn btn-outline" onclick="importJSON()">⬆ Importar</button>
+    <button class="btn btn-gold" onclick="window.print()">🖨 Imprimir</button>
+    <button class="btn btn-green" onclick="saveAll()">💾 Guardar</button>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:var(--green)"></span> Nuevos</div>
+  <div class="leg-item"><span class="leg-dot" style="background:var(--blue)"></span> Homologados</div>
+  <div class="leg-item"><span class="leg-dot" style="background:var(--orange)"></span> Modifican rango</div>
+  <div class="leg-item"><span class="leg-dot" style="background:var(--purple)"></span> A evaluar</div>
+  <div class="leg-item"><span class="leg-dot" style="background:var(--red)"></span> Se derogan</div>
+  <div class="leg-item" style="margin-left:auto; color:var(--blue); font-style:italic; text-transform:none; letter-spacing:0; font-weight:400;">
+    Clic en el nombre para editar · 📎 para vincular CV
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ANEXO Ia — UAI
+═══════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="annex-tag">ANEXO Ia</span>
+  Unidad de Auditoría Interna
+</div>
+
+<div class="content">
+  <div class="tree-center">
+
+    <!-- ANES raíz -->
+    <div class="node root-node" style="min-width:280px;">
+      <div class="node-title">Administración Nacional de Establecimientos de Salud</div>
+    </div>
+    <div class="v-line" style="height:18px;"></div>
+
+    <!-- UAI -->
+    <div class="node uai-node homo-cargo" style="min-width:230px;">
+      <div class="node-title">Unidad de Auditoría Interna</div>
+      <input class="name-field" id="n_uai" value="Viola, Juan" placeholder="Apellido, Nombre" data-label="UAI">
+    </div>
+    <div class="v-line" style="height:18px;"></div>
+
+    <!-- Línea horizontal entre las dos adjuntas -->
+    <div style="display:flex; align-items:flex-start; gap:80px; position:relative; justify-content:center;">
+      <div style="position:absolute; top:0; left:calc(50% - 160px); width:320px; height:2px; background:var(--border);"></div>
+
+      <!-- Adjunta Apoyo -->
+      <div class="branch-item">
+        <div class="v-top"></div>
+        <div class="node homo-cargo" style="min-width:180px;">
+          <div class="node-title">Auditoría Interna<br>Adjunta de Apoyo</div>
+          <input class="name-field" id="n_uai_apoyo" value="" placeholder="A designar" data-label="Auditoría Adjunta de Apoyo">
+        </div>
+        <div class="v-line" style="height:14px;"></div>
+        <div class="grid-3" style="width:400px;">
+          <div class="node dir homo-cargo">
+            <div class="node-title">Sup. Auditoría Contable</div>
+            <input class="name-field" id="n_sup_cont" value="" placeholder="A designar" data-label="Supervisión Auditoría Contable">
+          </div>
+          <div class="node dir homo-cargo">
+            <div class="node-title">Sup. Auditoría de Sistemas</div>
+            <input class="name-field" id="n_sup_sist" value="" placeholder="A designar" data-label="Supervisión Auditoría Sistemas">
+          </div>
+          <div class="node dir homo-cargo">
+            <div class="node-title">Sup. Auditoría Legal</div>
+            <input class="name-field" id="n_sup_leg" value="" placeholder="A designar" data-label="Supervisión Auditoría Legal">
+          </div>
+        </div>
+      </div>
+
+      <!-- Adjunta Establecimientos -->
+      <div class="branch-item">
+        <div class="v-top"></div>
+        <div class="node homo-cargo" style="min-width:230px;">
+          <div class="node-title">Auditoría Interna Adjunta de<br>Establecimientos Hospitalarios</div>
+          <input class="name-field" id="n_uai_estab" value="" placeholder="A designar" data-label="Auditoría Adjunta Establecimientos">
+        </div>
+        <div class="v-line" style="height:14px;"></div>
+        <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px; width:600px;">
+          <div class="node homo-cargo">
+            <div class="node-title">Sup. Auditoría H. Sommer</div>
+            <input class="name-field" id="n_aud_som" value="" placeholder="A designar" data-label="Supervisión H. Sommer">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Sup. Auditoría H. Bonaparte</div>
+            <input class="name-field" id="n_aud_bon" value="" placeholder="A designar" data-label="Supervisión H. Bonaparte">
+          </div>
+          <div class="node new-cargo">
+            <div class="node-title">Sup. Auditoría H. Posadas</div>
+            <input class="name-field" id="n_aud_pos" value="" placeholder="A designar" data-label="Supervisión H. Posadas">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Sup. Auditoría INAREPS</div>
+            <input class="name-field" id="n_aud_ina" value="" placeholder="A designar" data-label="Supervisión INAREPS">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Sup. Auditoría H. Carrillo</div>
+            <input class="name-field" id="n_aud_car" value="" placeholder="A designar" data-label="Supervisión H. Carrillo">
+          </div>
+        </div>
+        <!-- Sub-responsables Posadas -->
+        <div style="margin-top:8px; display:flex; flex-direction:column; align-items:center;">
+          <div class="v-line" style="height:12px;"></div>
+          <div class="grid-2" style="width:260px;">
+            <div class="node new-cargo">
+              <div class="node-title">Responsable Auditoría 1</div>
+              <input class="name-field" id="n_resp_1" value="" placeholder="A definir" data-label="Responsable Auditoría 1">
+            </div>
+            <div class="node new-cargo">
+              <div class="node-title">Responsable Auditoría 2</div>
+              <input class="name-field" id="n_resp_2" value="" placeholder="A definir" data-label="Responsable Auditoría 2">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="note-box" style="margin-top:16px;">En reunión (23/09/25) se acordó una nueva propuesta de UAI con Auditoría Adjunta de Apoyo y Adjunta Sustantiva por temáticas. <strong>Propuesta pendiente de envío.</strong></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ANEXO Ib — ENLACE y GESTIÓN ESTRATÉGICA
+═══════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="annex-tag">ANEXO Ib</span>
+  Coordinación Legal y Administrativa — Enlace Hospitalario · Gestión Estratégica
+</div>
+
+<div class="content">
+  <div class="two-col">
+
+    <!-- Col 1: Enlace -->
+    <div>
+      <div class="dg-block">
+        <div class="dg-head">
+          <div class="node-title">Dirección Ejecutiva de Coordinación<br>Legal y Administrativa</div>
+          <input class="name-field" id="n_deca" value="" placeholder="A designar" data-label="Dirección Ejecutiva Coordinación L. y A.">
+        </div>
+        <div class="dg-body grid-2">
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Enlace H. Bonaparte</div>
+            <input class="name-field" id="n_enl_bon" value="Pacheco, Pamela" data-label="Enlace H. Bonaparte">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Enlace H. Sommer</div>
+            <input class="name-field" id="n_enl_som" value="Berchasky, Eduardo" data-label="Enlace H. Sommer">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Enlace H. Posadas</div>
+            <input class="name-field" id="n_enl_pos" value="Aucielo, Daniel" data-label="Enlace H. Posadas">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Enlace INAREPS</div>
+            <input class="name-field" id="n_enl_ina" value="Cuvillier, Héctor" data-label="Enlace INAREPS">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Enlace H. Carrillo</div>
+            <input class="name-field" id="n_enl_car" value="Alessio, Pedro" data-label="Enlace H. Carrillo">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Gestión Documental</div>
+            <input class="name-field" id="n_gest_doc" value="Gacio, Daniel" data-label="Gestión Documental">
+          </div>
+          <div class="node homo-cargo" style="grid-column:span 2;">
+            <div class="node-title">Dir. de Sumarios</div>
+            <input class="name-field" id="n_sumarios" value="" placeholder="A designar" data-label="Sumarios">
+          </div>
+        </div>
+      </div>
+
+      <div class="subtree">
+        <div class="subtree-label">Coordinaciones — Enlace H. Posadas</div>
+        <div class="grid-3">
+          <div class="node coord-node new-cargo">
+            <div class="node-title">Coord. Enlace Adm.-Contable</div>
+            <input class="name-field" id="n_coord_adm" value="" placeholder="A designar" data-label="Coord. Enlace Adm.-Contable Posadas">
+          </div>
+          <div class="node coord-node new-cargo">
+            <div class="node-title">Coord. de Seguridad</div>
+            <input class="name-field" id="n_coord_seg" value="" placeholder="A designar" data-label="Coord. Seguridad Posadas">
+          </div>
+          <div class="node coord-node new-cargo">
+            <div class="node-title">Coord. Enlace RRHH</div>
+            <input class="name-field" id="n_coord_rrhh_pos" value="" placeholder="A designar" data-label="Coord. RRHH Posadas">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 2: Gestión Estratégica -->
+    <div>
+      <div class="dg-block">
+        <div class="dg-head">
+          <div class="node-title">Dir. Gral. Gestión Estratégica<br>y Recursos Hospitalarios</div>
+          <input class="name-field" id="n_dg_gest" value="" placeholder="A designar" data-label="DG Gestión Estratégica y Recursos Hospitalarios">
+        </div>
+        <div class="dg-body grid-3">
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Planificación Estratégica y Gestión de la Calidad</div>
+            <input class="name-field" id="n_planif" value="" placeholder="A designar" data-label="Dir. Planificación Estratégica">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Sistemas de Información y Gestión del Conocimiento</div>
+            <input class="name-field" id="n_sist_info" value="" placeholder="A designar" data-label="Dir. Sistemas Información">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. de Investigación Clínica</div>
+            <input class="name-field" id="n_invest" value="" placeholder="A designar" data-label="Dir. Investigación Clínica">
+          </div>
+        </div>
+      </div>
+
+      <div class="dg-block" style="margin-top:14px;">
+        <div class="dg-head">
+          <div class="node-title">Dir. Gral. de Coordinación Institucional</div>
+          <input class="name-field" id="n_dg_coord_inst" value="Maestripieri, Juani" data-label="DG Coordinación Institucional">
+        </div>
+        <div class="dg-body">
+          <div class="note-box" style="font-size:9px; margin:0;">Denominación modificada (reunión 23/09/25).</div>
+        </div>
+      </div>
+
+      <div class="dg-block" style="margin-top:14px;">
+        <div class="dg-head">
+          <div class="node-title">Dir. Gral. Infraestructura<br>y Mantenimiento Hospitalario</div>
+          <input class="name-field" id="n_dg_infra" value="Díaz, Leonardo" data-label="DG Infraestructura y Mantenimiento">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ANEXO Ic — ADQUISICIONES, FINANZAS, JURÍDICO, RRHH, TIC
+═══════════════════════════════════════════ -->
+<div class="section-header">
+  <span class="annex-tag">ANEXO Ic</span>
+  Adquisiciones · Finanzas y Presupuesto · Asuntos Jurídicos · RRHH · TIC
+</div>
+
+<div class="content">
+
+  <!-- Row 1: Adquisiciones + Finanzas -->
+  <div class="two-col">
+
+    <!-- Adquisiciones -->
+    <div class="dg-block">
+      <div class="dg-head">
+        <div class="node-title">Dir. Gral. Adquisiciones y Procesos</div>
+        <input class="name-field" id="n_dg_adq" value="Fernández Cerdeña, Sebastián" data-label="DG Adquisiciones y Procesos">
+      </div>
+      <div class="dg-body grid-2">
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Compras y Contrataciones</div>
+          <input class="name-field" id="n_compras" value="" placeholder="A designar" data-label="Dir. Compras y Contrataciones">
+        </div>
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Planificación y Seguimiento de Procesos</div>
+          <input class="name-field" id="n_seg_proc" value="Ramírez, Matías" data-label="Dir. Planificación y Seguimiento Procesos">
+        </div>
+        <div class="node new-cargo" style="grid-column:span 2;">
+          <div class="node-title">Dir. Logística Integrada y Abastecimiento Sanitario</div>
+          <input class="name-field" id="n_logist" value="" placeholder="Falta validación Sec. Transformación del Estado" data-label="Dir. Logística y Abastecimiento">
+        </div>
+      </div>
+      <div class="dg-body" style="padding-top:0; border-top:1px solid var(--border);">
+        <div class="node coord-node new-cargo">
+          <div class="node-title">Coordinación de Patrimonio</div>
+          <input class="name-field" id="n_patrim" value="" placeholder="A designar" data-label="Coord. Patrimonio">
+        </div>
+      </div>
+    </div>
+
+    <!-- Finanzas -->
+    <div>
+      <div class="dg-block">
+        <div class="dg-head">
+          <div class="node-title">Dir. Gral. Finanzas y Presupuesto</div>
+          <input class="name-field" id="n_dg_fin" value="Alonso, Sebastián" data-label="DG Finanzas y Presupuesto">
+        </div>
+        <div class="dg-body grid-2">
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Programación y Control Presupuestario</div>
+            <input class="name-field" id="n_presup" value="Chas, Verónica" data-label="Dir. Programación y Control Presupuestario">
+          </div>
+          <div class="node homo-cargo">
+            <div class="node-title">Dir. Contabilidad y Finanzas</div>
+            <input class="name-field" id="n_contab" value="" placeholder="A designar" data-label="Dir. Contabilidad y Finanzas">
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="node coord-node homo-cargo">
+          <div class="node-title">Coordinación de Tesorería</div>
+          <input class="name-field" id="n_tesore" value="Solari, Camila" data-label="Coord. Tesorería">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Row 2: Jurídico + TIC -->
+  <div class="two-col" style="margin-top:20px;">
+
+    <!-- Jurídico -->
+    <div class="dg-block">
+      <div class="dg-head">
+        <div class="node-title">Dir. Gral. de Asuntos Jurídicos</div>
+        <input class="name-field" id="n_dg_jur" value="Urrejola, Gastón" data-label="DG Asuntos Jurídicos">
+      </div>
+      <div class="dg-body grid-2">
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. de Legales</div>
+          <input class="name-field" id="n_legales" value="Dalia, Mariela" data-label="Dir. Legales">
+        </div>
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Asuntos Judiciales</div>
+          <input class="name-field" id="n_judicial" value="Manolizi, Marina" data-label="Dir. Asuntos Judiciales">
+        </div>
+      </div>
+    </div>
+
+    <!-- TIC -->
+    <div class="dg-block">
+      <div class="dg-head">
+        <div class="node-title">Dir. Gral. Tecnología de la<br>Información y Comunicaciones</div>
+        <input class="name-field" id="n_dg_tic" value="Cohen, Carlos" data-label="DG TIC">
+      </div>
+      <div class="dg-body grid-2">
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Desarrollo de Sistemas</div>
+          <input class="name-field" id="n_dev_sist" value="" placeholder="A designar" data-label="Dir. Desarrollo de Sistemas">
+        </div>
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Infraestructura y Seguridad Informática</div>
+          <input class="name-field" id="n_seg_info" value="" placeholder="A designar" data-label="Dir. Infraestructura y Seguridad Informática">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Row 3: RRHH full-width -->
+  <div style="margin-top:20px;">
+    <div class="dg-block">
+      <div class="dg-head">
+        <div class="node-title">Dirección General de Recursos Humanos</div>
+        <input class="name-field" id="n_dg_rrhh" value="" placeholder="A designar" data-label="DG Recursos Humanos">
+      </div>
+      <div class="dg-body grid-4">
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Administración de Personal</div>
+          <input class="name-field" id="n_adm_pers" value="Raissa, Nadia" data-label="Dir. Administración de Personal">
+        </div>
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Desarrollo de Carrera y Capacitación</div>
+          <input class="name-field" id="n_cap" value="" placeholder="A designar" data-label="Dir. Desarrollo de Carrera y Capacitación">
+        </div>
+        <div class="node homo-cargo">
+          <div class="node-title">Dir. Salud Ocupacional</div>
+          <input class="name-field" id="n_sal_ocup" value="" placeholder="A designar" data-label="Dir. Salud Ocupacional">
+        </div>
+        <div class="node coord-node homo-cargo">
+          <div class="node-title">Coord. Liquidación de Haberes</div>
+          <input class="name-field" id="n_haberes" value="Christiansen, Andrés" data-label="Coord. Liquidación de Haberes">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="background:var(--navy); color:rgba(255,255,255,0.4); padding:10px 28px; font-size:9px; display:flex; justify-content:space-between; border-top:3px solid var(--gold); margin-top:16px;">
+  <span>ANES · Administración Nacional de Establecimientos de Salud · Ministerio de Salud</span>
+  <span>Planilla Anexa al Artículo X° · Anexos Ia / Ib / Ic · Versión Final con Designaciones</span>
+</div>
+
+<!-- CV MODAL -->
+<div class="cv-overlay" id="cvOverlay">
+  <div class="cv-modal">
+    <div class="cv-mhead">
+      <div>
+        <h3 id="cvModalTitle">Vincular CV</h3>
+        <p id="cvModalSub">Cargo</p>
+      </div>
+      <button class="cv-mclose" onclick="closeCV()">✕</button>
+    </div>
+    <div class="cv-mbody">
+      <!-- URL externa -->
+      <div class="cv-row">
+        <label>🔗 URL / Enlace externo (Drive, Dropbox, web…)</label>
+        <input type="url" id="cvUrl" placeholder="https://drive.google.com/…">
+      </div>
+      <div class="cv-divider">o</div>
+      <!-- Archivo local -->
+      <div class="cv-row">
+        <label>📂 Cargar archivo PDF / Word desde tu equipo</label>
+        <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="font-size:11px; padding:4px 0;">
+      </div>
+      <!-- Estado actual -->
+      <div class="cv-current" id="cvCurrent" style="display:none;">
+        <span>📎</span>
+        <div><strong>CV vinculado:</strong><br><a id="cvCurrentLink" href="#" target="_blank">ver enlace</a></div>
+      </div>
+    </div>
+    <div class="cv-mfoot">
+      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">🗑 Quitar CV</button>
+      <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCV()">Cancelar</button>
+      <button class="btn btn-green" onclick="saveCV()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONFIGURACIÓN JSONBIN -->
+<div class="cv-overlay" id="cfgOverlay">
+  <div class="cv-modal" style="width:480px;">
+    <div class="cv-mhead">
+      <div>
+        <h3>⚙ Configuración de sincronización</h3>
+        <p>Conectar con JSONBin.io para guardar en la nube</p>
+      </div>
+      <button class="cv-mclose" onclick="closeCfg()">✕</button>
+    </div>
+    <div class="cv-mbody" style="gap:14px;">
+      <div style="background:#f0f4ff;border:1px solid #c0d0f0;border-radius:5px;padding:11px 13px;font-size:10.5px;line-height:1.7;color:#1a2a5a;">
+        <strong>Cómo configurar (1 sola vez):</strong><br>
+        1. Entrá a <a href="https://jsonbin.io" target="_blank" style="color:var(--blue);font-weight:600;">jsonbin.io</a> y creá una cuenta gratuita.<br>
+        2. Copiá tu <strong>Master Key</strong> desde el panel → API Keys.<br>
+        3. Creá un nuevo Bin vacío (<code>{}</code>) y copiá su <strong>Bin ID</strong>.<br>
+        4. Pegá ambos datos aquí abajo y hacé clic en <em>Guardar configuración</em>.
+      </div>
+      <div class="cv-row">
+        <label>🔑 Master Key (X-Master-Key)</label>
+        <input type="password" id="cfgMasterKey" placeholder="$2a$10$…">
+      </div>
+      <div class="cv-row">
+        <label>🗂 Bin ID</label>
+        <input type="text" id="cfgBinId" placeholder="64f3a1b2e3…">
+      </div>
+      <div id="cfgStatus" style="font-size:10px;color:var(--text-muted);min-height:16px;"></div>
+    </div>
+    <div class="cv-mfoot">
+      <button class="btn btn-danger" onclick="clearCfg()">🗑 Borrar configuración</button>
+      <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCfg()">Cancelar</button>
+      <button class="btn btn-green" onclick="saveCfg()">✓ Guardar configuración</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HIDDEN FILE INPUT -->
+<input type="file" id="file-input" accept=".json" style="display:none" onchange="loadFile(event)">
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  ESTADO GLOBAL
+// ═══════════════════════════════════════════════════════════
+let cvStore          = {};
+let currentCvNodeId  = null;
+let isSyncing        = false;
+
+// ═══════════════════════════════════════════════════════════
+//  JSONBIN HELPERS
+// ═══════════════════════════════════════════════════════════
+function getBinCfg() {
+  return {
+    key:   localStorage.getItem('anes_bin_key')   || '',
+    binId: localStorage.getItem('anes_bin_id')    || ''
+  };
+}
+
+function hasBinCfg() {
+  const c = getBinCfg();
+  return c.key && c.binId;
+}
+
+async function binRead() {
+  const { key, binId } = getBinCfg();
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+    headers: { 'X-Master-Key': key }
+  });
+  if (!r.ok) throw new Error('Error leyendo Bin: ' + r.status);
+  const j = await r.json();
+  return j.record || {};
+}
+
+async function binWrite(payload) {
+  const { key, binId } = getBinCfg();
+  const r = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
+    method:  'PUT',
+    headers: { 'Content-Type': 'application/json', 'X-Master-Key': key },
+    body:    JSON.stringify(payload)
+  });
+  if (!r.ok) throw new Error('Error guardando en Bin: ' + r.status);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SINCRONIZACIÓN
+// ═══════════════════════════════════════════════════════════
+async function syncFromCloud() {
+  if (!hasBinCfg()) return;
+  setSyncIndicator('syncing');
+  try {
+    const remote = await binRead();
+    const names  = remote.names || {};
+    const cvs    = remote.cvs   || {};
+
+    Object.entries(names).forEach(([id, obj]) => {
+      const el = document.getElementById(id);
+      if (el && obj.value) {
+        el.value = obj.value;
+        el.classList.remove('empty');
+        el.classList.toggle('modified', !!obj.value);
+      }
+    });
+    cvStore = cvs;
+    // También guardar local como caché
+    localStorage.setItem('anes_org_names', JSON.stringify(names));
+    localStorage.setItem('anes_org_cvs',   JSON.stringify(cvs));
+    refreshAllCvBtns();
+    setSyncIndicator('ok');
+    showToast('☁ Datos sincronizados desde la nube');
+  } catch(e) {
+    setSyncIndicator('error');
+    showToast('⚠ Sin conexión — usando datos locales');
+    loadFromLocal();
+  }
+}
+
+async function pushToCloud(showMsg = true) {
+  if (!hasBinCfg()) { persistLocal(); if(showMsg) showToast('✓ Guardado localmente'); return; }
+  setSyncIndicator('syncing');
+  try {
+    const payload = { names: collectNames(), cvs: cvStore };
+    await binWrite(payload);
+    persistLocal();
+    setSyncIndicator('ok');
+    if (showMsg) showToast('☁ Guardado en la nube');
+  } catch(e) {
+    setSyncIndicator('error');
+    persistLocal();
+    if (showMsg) showToast('⚠ Error en la nube — guardado solo localmente');
+  }
+}
+
+function setSyncIndicator(state) {
+  const ind = document.getElementById('syncIndicator');
+  if (!ind) return;
+  const map = {
+    syncing: { text: '↻ Sincronizando…', color: '#c9a227' },
+    ok:      { text: '☁ Sincronizado',   color: '#2e7d52' },
+    error:   { text: '⚠ Sin conexión',   color: '#c0392b' },
+    local:   { text: '💾 Solo local',     color: '#5a6a85' }
+  };
+  const s = map[state] || map.local;
+  ind.textContent  = s.text;
+  ind.style.color  = s.color;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  PERSISTENCIA LOCAL
+// ═══════════════════════════════════════════════════════════
+function collectNames() {
+  const data = {};
+  document.querySelectorAll('.name-field').forEach(input => {
+    data[input.id] = { label: input.dataset.label, value: input.value };
+  });
+  return data;
+}
+
+function persistLocal() {
+  localStorage.setItem('anes_org_names', JSON.stringify(collectNames()));
+  localStorage.setItem('anes_org_cvs',   JSON.stringify(cvStore));
+}
+
+function loadFromLocal() {
+  try {
+    const savedNames = localStorage.getItem('anes_org_names');
+    if (savedNames) {
+      const data = JSON.parse(savedNames);
+      Object.entries(data).forEach(([id, obj]) => {
+        const el = document.getElementById(id);
+        if (el && obj.value) { el.value = obj.value; el.classList.remove('empty'); }
+      });
+    }
+    const savedCvs = localStorage.getItem('anes_org_cvs');
+    if (savedCvs) cvStore = JSON.parse(savedCvs);
+  } catch {}
+}
+
+// ═══════════════════════════════════════════════════════════
+//  BOTÓN GUARDAR
+// ═══════════════════════════════════════════════════════════
+async function saveAll() {
+  await pushToCloud(true);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  EXPORTAR / IMPORTAR JSON
+// ═══════════════════════════════════════════════════════════
+function exportJSON() {
+  const payload = { names: collectNames(), cvs: cvStore };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'ANES_Designaciones_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('⬇ Archivo exportado');
+}
+
+function importJSON() { document.getElementById('file-input').click(); }
+
+function loadFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async e => {
+    try {
+      const data  = JSON.parse(e.target.result);
+      const names = data.names || data;
+      const cvs   = data.cvs   || {};
+      let count   = 0;
+      Object.entries(names).forEach(([id, obj]) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.value = obj.value || '';
+          el.classList.toggle('empty', !el.value);
+          el.classList.toggle('modified', !!el.value);
+          count++;
+        }
+      });
+      cvStore = cvs;
+      refreshAllCvBtns();
+      await pushToCloud(false);
+      showToast(`✓ ${count} campos importados y sincronizados`);
+    } catch { showToast('✗ Error al leer el archivo'); }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MODAL CONFIGURACIÓN JSONBIN
+// ═══════════════════════════════════════════════════════════
+function openCfg() {
+  const { key, binId } = getBinCfg();
+  document.getElementById('cfgMasterKey').value = key;
+  document.getElementById('cfgBinId').value     = binId;
+  document.getElementById('cfgStatus').textContent = '';
+  document.getElementById('cfgOverlay').classList.add('open');
+}
+function closeCfg() {
+  document.getElementById('cfgOverlay').classList.remove('open');
+}
+async function saveCfg() {
+  const key   = document.getElementById('cfgMasterKey').value.trim();
+  const binId = document.getElementById('cfgBinId').value.trim();
+  if (!key || !binId) { document.getElementById('cfgStatus').textContent = '⚠ Completá ambos campos.'; return; }
+  localStorage.setItem('anes_bin_key',  key);
+  localStorage.setItem('anes_bin_id',   binId);
+  document.getElementById('cfgStatus').textContent = '↻ Verificando conexión…';
+  try {
+    await binRead();
+    document.getElementById('cfgStatus').textContent = '✓ Conexión exitosa.';
+    setTimeout(() => { closeCfg(); syncFromCloud(); }, 800);
+  } catch {
+    document.getElementById('cfgStatus').textContent = '✗ No se pudo conectar. Verificá la Key y el Bin ID.';
+  }
+}
+function clearCfg() {
+  localStorage.removeItem('anes_bin_key');
+  localStorage.removeItem('anes_bin_id');
+  document.getElementById('cfgMasterKey').value = '';
+  document.getElementById('cfgBinId').value     = '';
+  document.getElementById('cfgStatus').textContent = 'Configuración borrada. Se usará solo almacenamiento local.';
+  setSyncIndicator('local');
+}
+document.getElementById('cfgOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCfg();
+});
+
+// ═══════════════════════════════════════════════════════════
+//  NODOS: INICIALIZAR Y REFRESCAR
+// ═══════════════════════════════════════════════════════════
+function initNodes() {
+  document.querySelectorAll('.name-field').forEach(input => {
+    const nodeId = input.id;
+    const parent = input.closest('.node, .dg-head');
+    if (!parent) return;
+    if (!parent.querySelector('.cv-zone')) {
+      const zone = document.createElement('div');
+      zone.className = 'cv-zone';
+      zone.innerHTML = `<button class="cv-btn" data-node="${nodeId}">📎 CV</button>`;
+      input.after(zone);
+    }
+  });
+  refreshAllCvBtns();
+}
+
+function refreshAllCvBtns() {
+  document.querySelectorAll('.cv-btn[data-node]').forEach(btn => {
+    const id = btn.dataset.node;
+    if (cvStore[id]) {
+      btn.classList.add('has-cv');
+      btn.innerHTML   = '📎 Ver CV';
+      btn.title       = cvStore[id].name || cvStore[id].url;
+      btn.onclick     = (e) => { e.stopPropagation(); window.open(cvStore[id].url, '_blank'); };
+      btn.ondblclick  = (e) => { e.stopPropagation(); openCV(id, e); };
+    } else {
+      btn.classList.remove('has-cv');
+      btn.innerHTML   = '📎 CV';
+      btn.title       = 'Vincular CV';
+      btn.onclick     = (e) => { e.stopPropagation(); openCV(id, e); };
+      btn.ondblclick  = null;
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MODAL CV
+// ═══════════════════════════════════════════════════════════
+function openCV(nodeId, e) {
+  if (e) e.stopPropagation();
+  currentCvNodeId = nodeId;
+  const input = document.getElementById(nodeId);
+  const label = input ? (input.dataset.label || nodeId) : nodeId;
+  const name  = input ? (input.value || '—') : '—';
+  document.getElementById('cvModalTitle').textContent = 'Vincular CV';
+  document.getElementById('cvModalSub').textContent   = label + (name && name !== '—' ? ' · ' + name : '');
+  document.getElementById('cvUrl').value  = '';
+  document.getElementById('cvFile').value = '';
+  const existing  = cvStore[nodeId];
+  const curDiv    = document.getElementById('cvCurrent');
+  const curLink   = document.getElementById('cvCurrentLink');
+  const removeBtn = document.getElementById('cvRemoveBtn');
+  if (existing) {
+    curDiv.style.display    = 'flex';
+    removeBtn.style.display = 'inline-flex';
+    curLink.href            = existing.url;
+    curLink.textContent     = existing.name || existing.url;
+  } else {
+    curDiv.style.display    = 'none';
+    removeBtn.style.display = 'none';
+  }
+  document.getElementById('cvOverlay').classList.add('open');
+}
+
+function closeCV() {
+  document.getElementById('cvOverlay').classList.remove('open');
+  currentCvNodeId = null;
+}
+
+async function saveCV() {
+  const url     = document.getElementById('cvUrl').value.trim();
+  const fileInp = document.getElementById('cvFile');
+  const file    = fileInp.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      cvStore[currentCvNodeId] = { url: e.target.result, name: file.name, type: 'file' };
+      await pushToCloud(false);
+      refreshAllCvBtns();
+      closeCV();
+      showToast('📎 CV vinculado: ' + file.name);
+    };
+    reader.readAsDataURL(file);
+  } else if (url) {
+    cvStore[currentCvNodeId] = { url, name: url, type: 'link' };
+    await pushToCloud(false);
+    refreshAllCvBtns();
+    closeCV();
+    showToast('🔗 CV vinculado correctamente');
+  } else {
+    showToast('⚠ Ingresá una URL o seleccioná un archivo');
+  }
+}
+
+async function removeCV() {
+  if (!currentCvNodeId) return;
+  delete cvStore[currentCvNodeId];
+  await pushToCloud(false);
+  refreshAllCvBtns();
+  closeCV();
+  showToast('🗑 CV eliminado');
+}
+
+document.getElementById('cvOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeCV();
+});
+
+// ═══════════════════════════════════════════════════════════
+//  CAMPOS EDITABLES — MARCAR MODIFICADOS
+// ═══════════════════════════════════════════════════════════
+document.querySelectorAll('.name-field').forEach(input => {
+  const original = input.value;
+  input.classList.toggle('empty', !input.value);
+  input.addEventListener('input', () => {
+    input.classList.toggle('empty', !input.value.trim());
+    input.classList.toggle('modified', input.value.trim() !== original && input.value.trim() !== '');
+  });
+  input.addEventListener('focus', () => {
+    if (input.placeholder && !input.value) input.value = '';
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+//  TOAST
+// ═══════════════════════════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ARRANQUE
+// ═══════════════════════════════════════════════════════════
+(function init() {
+  loadFromLocal();   // carga caché local primero (respuesta inmediata)
+  initNodes();
+  if (hasBinCfg()) {
+    setSyncIndicator('syncing');
+    syncFromCloud();  // luego sobreescribe con datos de la nube
+  } else {
+    setSyncIndicator('local');
+  }
+})();
+</script>
+
+</body>
+</html>
