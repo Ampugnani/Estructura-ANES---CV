@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANES – Estructura Organizativa Editable</title>
+<title>ANES â Estructura Organizativa Editable</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap');
 
@@ -35,7 +35,7 @@
     min-height: 100vh;
   }
 
-  /* ── TOOLBAR ── */
+  /* ââ TOOLBAR ââ */
   .toolbar {
     position: sticky;
     top: 0;
@@ -121,7 +121,7 @@
     50% { opacity:0.6; }
   }
 
-  /* ── LEGEND ── */
+  /* ââ LEGEND ââ */
   .legend {
     background: white;
     border-bottom: 1px solid var(--border);
@@ -147,7 +147,7 @@
     flex-shrink: 0;
   }
 
-  /* ── SECTION HEADER ── */
+  /* ââ SECTION HEADER ââ */
   .section-header {
     background: var(--navy-mid);
     color: white;
@@ -172,12 +172,12 @@
     letter-spacing: 1px;
   }
 
-  /* ── CONTENT ── */
+  /* ââ CONTENT ââ */
   .content {
     padding: 20px 28px;
   }
 
-  /* ── NODE ── */
+  /* ââ NODE ââ */
   .node {
     border: 1.5px solid var(--border);
     border-radius: 5px;
@@ -200,7 +200,7 @@
     pointer-events: none;
   }
 
-  /* ── EDITABLE NAME ── */
+  /* ââ EDITABLE NAME ââ */
   .name-field {
     margin-top: 5px;
     display: block;
@@ -295,18 +295,18 @@
     line-height: 1.5;
   }
 
-  /* ── TREE CONNECTORS ── */
+  /* ââ TREE CONNECTORS ââ */
   .v-line { width: 2px; background: var(--border); }
   .h-line { height: 2px; background: var(--border); flex: 1; align-self: flex-start; }
 
-  /* ── GRID LAYOUTS ── */
+  /* ââ GRID LAYOUTS ââ */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
   .grid-5 { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 
-  /* ── DG BLOCK ── */
+  /* ââ DG BLOCK ââ */
   .dg-block { border: 2px solid var(--blue); border-radius: 6px; overflow: hidden; }
   .dg-block + .dg-block { margin-top: 14px; }
   .dg-head {
@@ -320,7 +320,7 @@
   .dg-head .name-field:focus  { background: rgba(255,255,255,0.15); color: white; border-bottom-color: var(--gold); }
   .dg-body { background: white; padding: 12px; }
 
-  /* ── SUBTREE ── */
+  /* ââ SUBTREE ââ */
   .subtree {
     border: 1px solid var(--border);
     border-radius: 5px;
@@ -340,13 +340,13 @@
     margin-bottom: 10px;
   }
 
-  /* ── TREE CENTER ── */
+  /* ââ TREE CENTER ââ */
   .tree-center { display: flex; flex-direction: column; align-items: center; }
   .branch-row  { display: flex; gap: 0; align-items: flex-start; position: relative; justify-content: center; }
   .branch-item { display: flex; flex-direction: column; align-items: center; padding: 0 8px; }
   .branch-item .v-top { width: 2px; height: 20px; background: var(--border); }
 
-  /* ── TOAST ── */
+  /* ââ TOAST ââ */
   .toast {
     position: fixed;
     bottom: 24px;
@@ -366,7 +366,7 @@
   }
   .toast.show { transform: translateY(0); opacity: 1; }
 
-  /* ── CV ZONE ── */
+  /* ââ CV ZONE ââ */
   .cv-zone {
     margin-top: 5px;
     display: flex;
@@ -399,7 +399,7 @@
   .dg-head .cv-btn:hover { border-color: rgba(255,255,255,0.8); color: white; background: rgba(255,255,255,0.1); }
   .dg-head .cv-btn.has-cv { border-style: solid; border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.12); }
 
-  /* ── CV MODAL ── */
+  /* ââ CV MODAL ââ */
   .cv-overlay {
     display: none; position: fixed; inset: 0;
     background: rgba(10,18,40,0.55); z-index: 500;
@@ -438,7 +438,7 @@
   .btn-danger { background:transparent; border:1.5px solid var(--red); color:var(--red); }
   .btn-danger:hover { background:var(--red); color:white; }
 
-  /* ── PRINT ── */
+  /* ââ PRINT ââ */
   @media print {
     .toolbar, .legend, .cv-zone, .cv-overlay { display: none !important; }
     .name-field { border-bottom: none !important; }
@@ -454,17 +454,17 @@
   <div class="toolbar-left">
     <div>
       <h1>ANES</h1>
-      <p>Estructura Organizativa · Versión Final</p>
+      <p>Estructura Organizativa Â· VersiÃ³n Final</p>
     </div>
-    <span class="edit-badge">✏ Editable</span>
+    <span class="edit-badge">â Editable</span>
   </div>
   <div class="toolbar-right">
-    <span id="syncIndicator" style="font-size:10px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.5);">💾 Solo local</span>
-    <button class="btn btn-outline" onclick="openCfg()" title="Configurar sincronización en la nube">⚙ Nube</button>
-    <button class="btn btn-outline" onclick="exportJSON()">⬇ Exportar</button>
-    <button class="btn btn-outline" onclick="importJSON()">⬆ Importar</button>
-    <button class="btn btn-gold" onclick="window.print()">🖨 Imprimir</button>
-    <button class="btn btn-green" onclick="saveAll()">💾 Guardar</button>
+    <span id="syncIndicator" style="font-size:10px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.5);">ð¾ Solo local</span>
+    <button class="btn btn-outline" onclick="openCfg()" title="Configurar sincronizaciÃ³n en la nube">â Nube</button>
+    <button class="btn btn-outline" onclick="exportJSON()">â¬ Exportar</button>
+    <button class="btn btn-outline" onclick="importJSON()">â¬ Importar</button>
+    <button class="btn btn-gold" onclick="window.print()">ð¨ Imprimir</button>
+    <button class="btn btn-green" onclick="saveAll()">ð¾ Guardar</button>
   </div>
 </div>
 
@@ -476,35 +476,35 @@
   <div class="leg-item"><span class="leg-dot" style="background:var(--purple)"></span> A evaluar</div>
   <div class="leg-item"><span class="leg-dot" style="background:var(--red)"></span> Se derogan</div>
   <div class="leg-item" style="margin-left:auto; color:var(--blue); font-style:italic; text-transform:none; letter-spacing:0; font-weight:400;">
-    Clic en el nombre para editar · 📎 para vincular CV
+    Clic en el nombre para editar Â· ð para vincular CV
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     ANEXO Ia — UAI
-═══════════════════════════════════════════ -->
+<!-- ââââââââââââââââââââââââââââââââââââââââââ
+     ANEXO Ia â UAI
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ia</span>
-  Unidad de Auditoría Interna
+  Unidad de AuditorÃ­a Interna
 </div>
 
 <div class="content">
   <div class="tree-center">
 
-    <!-- ANES raíz -->
+    <!-- ANES raÃ­z -->
     <div class="node root-node" style="min-width:280px;">
-      <div class="node-title">Administración Nacional de Establecimientos de Salud</div>
+      <div class="node-title">AdministraciÃ³n Nacional de Establecimientos de Salud</div>
     </div>
     <div class="v-line" style="height:18px;"></div>
 
     <!-- UAI -->
     <div class="node uai-node homo-cargo" style="min-width:230px;">
-      <div class="node-title">Unidad de Auditoría Interna</div>
+      <div class="node-title">Unidad de AuditorÃ­a Interna</div>
       <input class="name-field" id="n_uai" value="Viola, Juan" placeholder="Apellido, Nombre" data-label="UAI">
     </div>
     <div class="v-line" style="height:18px;"></div>
 
-    <!-- Línea horizontal entre las dos adjuntas -->
+    <!-- LÃ­nea horizontal entre las dos adjuntas -->
     <div style="display:flex; align-items:flex-start; gap:80px; position:relative; justify-content:center;">
       <div style="position:absolute; top:0; left:calc(50% - 160px); width:320px; height:2px; background:var(--border);"></div>
 
@@ -512,22 +512,22 @@
       <div class="branch-item">
         <div class="v-top"></div>
         <div class="node homo-cargo" style="min-width:180px;">
-          <div class="node-title">Auditoría Interna<br>Adjunta de Apoyo</div>
-          <input class="name-field" id="n_uai_apoyo" value="" placeholder="A designar" data-label="Auditoría Adjunta de Apoyo">
+          <div class="node-title">AuditorÃ­a Interna<br>Adjunta de Apoyo</div>
+          <input class="name-field" id="n_uai_apoyo" value="" placeholder="A designar" data-label="AuditorÃ­a Adjunta de Apoyo">
         </div>
         <div class="v-line" style="height:14px;"></div>
         <div class="grid-3" style="width:400px;">
           <div class="node dir homo-cargo">
-            <div class="node-title">Sup. Auditoría Contable</div>
-            <input class="name-field" id="n_sup_cont" value="" placeholder="A designar" data-label="Supervisión Auditoría Contable">
+            <div class="node-title">Sup. AuditorÃ­a Contable</div>
+            <input class="name-field" id="n_sup_cont" value="" placeholder="A designar" data-label="SupervisiÃ³n AuditorÃ­a Contable">
           </div>
           <div class="node dir homo-cargo">
-            <div class="node-title">Sup. Auditoría de Sistemas</div>
-            <input class="name-field" id="n_sup_sist" value="" placeholder="A designar" data-label="Supervisión Auditoría Sistemas">
+            <div class="node-title">Sup. AuditorÃ­a de Sistemas</div>
+            <input class="name-field" id="n_sup_sist" value="" placeholder="A designar" data-label="SupervisiÃ³n AuditorÃ­a Sistemas">
           </div>
           <div class="node dir homo-cargo">
-            <div class="node-title">Sup. Auditoría Legal</div>
-            <input class="name-field" id="n_sup_leg" value="" placeholder="A designar" data-label="Supervisión Auditoría Legal">
+            <div class="node-title">Sup. AuditorÃ­a Legal</div>
+            <input class="name-field" id="n_sup_leg" value="" placeholder="A designar" data-label="SupervisiÃ³n AuditorÃ­a Legal">
           </div>
         </div>
       </div>
@@ -536,30 +536,30 @@
       <div class="branch-item">
         <div class="v-top"></div>
         <div class="node homo-cargo" style="min-width:230px;">
-          <div class="node-title">Auditoría Interna Adjunta de<br>Establecimientos Hospitalarios</div>
-          <input class="name-field" id="n_uai_estab" value="" placeholder="A designar" data-label="Auditoría Adjunta Establecimientos">
+          <div class="node-title">AuditorÃ­a Interna Adjunta de<br>Establecimientos Hospitalarios</div>
+          <input class="name-field" id="n_uai_estab" value="" placeholder="A designar" data-label="AuditorÃ­a Adjunta Establecimientos">
         </div>
         <div class="v-line" style="height:14px;"></div>
         <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px; width:600px;">
           <div class="node homo-cargo">
-            <div class="node-title">Sup. Auditoría H. Sommer</div>
-            <input class="name-field" id="n_aud_som" value="" placeholder="A designar" data-label="Supervisión H. Sommer">
+            <div class="node-title">Sup. AuditorÃ­a H. Sommer</div>
+            <input class="name-field" id="n_aud_som" value="" placeholder="A designar" data-label="SupervisiÃ³n H. Sommer">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Sup. Auditoría H. Bonaparte</div>
-            <input class="name-field" id="n_aud_bon" value="" placeholder="A designar" data-label="Supervisión H. Bonaparte">
+            <div class="node-title">Sup. AuditorÃ­a H. Bonaparte</div>
+            <input class="name-field" id="n_aud_bon" value="" placeholder="A designar" data-label="SupervisiÃ³n H. Bonaparte">
           </div>
           <div class="node new-cargo">
-            <div class="node-title">Sup. Auditoría H. Posadas</div>
-            <input class="name-field" id="n_aud_pos" value="" placeholder="A designar" data-label="Supervisión H. Posadas">
+            <div class="node-title">Sup. AuditorÃ­a H. Posadas</div>
+            <input class="name-field" id="n_aud_pos" value="" placeholder="A designar" data-label="SupervisiÃ³n H. Posadas">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Sup. Auditoría INAREPS</div>
-            <input class="name-field" id="n_aud_ina" value="" placeholder="A designar" data-label="Supervisión INAREPS">
+            <div class="node-title">Sup. AuditorÃ­a INAREPS</div>
+            <input class="name-field" id="n_aud_ina" value="" placeholder="A designar" data-label="SupervisiÃ³n INAREPS">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Sup. Auditoría H. Carrillo</div>
-            <input class="name-field" id="n_aud_car" value="" placeholder="A designar" data-label="Supervisión H. Carrillo">
+            <div class="node-title">Sup. AuditorÃ­a H. Carrillo</div>
+            <input class="name-field" id="n_aud_car" value="" placeholder="A designar" data-label="SupervisiÃ³n H. Carrillo">
           </div>
         </div>
         <!-- Sub-responsables Posadas -->
@@ -567,12 +567,12 @@
           <div class="v-line" style="height:12px;"></div>
           <div class="grid-2" style="width:260px;">
             <div class="node new-cargo">
-              <div class="node-title">Responsable Auditoría 1</div>
-              <input class="name-field" id="n_resp_1" value="" placeholder="A definir" data-label="Responsable Auditoría 1">
+              <div class="node-title">Responsable AuditorÃ­a 1</div>
+              <input class="name-field" id="n_resp_1" value="" placeholder="A definir" data-label="Responsable AuditorÃ­a 1">
             </div>
             <div class="node new-cargo">
-              <div class="node-title">Responsable Auditoría 2</div>
-              <input class="name-field" id="n_resp_2" value="" placeholder="A definir" data-label="Responsable Auditoría 2">
+              <div class="node-title">Responsable AuditorÃ­a 2</div>
+              <input class="name-field" id="n_resp_2" value="" placeholder="A definir" data-label="Responsable AuditorÃ­a 2">
             </div>
           </div>
         </div>
@@ -580,15 +580,15 @@
     </div>
 
   </div>
-  <div class="note-box" style="margin-top:16px;">En reunión (23/09/25) se acordó una nueva propuesta de UAI con Auditoría Adjunta de Apoyo y Adjunta Sustantiva por temáticas. <strong>Propuesta pendiente de envío.</strong></div>
+  <div class="note-box" style="margin-top:16px;">En reuniÃ³n (23/09/25) se acordÃ³ una nueva propuesta de UAI con AuditorÃ­a Adjunta de Apoyo y Adjunta Sustantiva por temÃ¡ticas. <strong>Propuesta pendiente de envÃ­o.</strong></div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     ANEXO Ib — ENLACE y GESTIÓN ESTRATÉGICA
-═══════════════════════════════════════════ -->
+<!-- ââââââââââââââââââââââââââââââââââââââââââ
+     ANEXO Ib â ENLACE y GESTIÃN ESTRATÃGICA
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ib</span>
-  Coordinación Legal y Administrativa — Enlace Hospitalario · Gestión Estratégica
+  CoordinaciÃ³n Legal y Administrativa â Enlace Hospitalario Â· GestiÃ³n EstratÃ©gica
 </div>
 
 <div class="content">
@@ -598,8 +598,8 @@
     <div>
       <div class="dg-block">
         <div class="dg-head">
-          <div class="node-title">Dirección Ejecutiva de Coordinación<br>Legal y Administrativa</div>
-          <input class="name-field" id="n_deca" value="" placeholder="A designar" data-label="Dirección Ejecutiva Coordinación L. y A.">
+          <div class="node-title">DirecciÃ³n Ejecutiva de CoordinaciÃ³n<br>Legal y Administrativa</div>
+          <input class="name-field" id="n_deca" value="" placeholder="A designar" data-label="DirecciÃ³n Ejecutiva CoordinaciÃ³n L. y A.">
         </div>
         <div class="dg-body grid-2">
           <div class="node homo-cargo">
@@ -616,15 +616,15 @@
           </div>
           <div class="node homo-cargo">
             <div class="node-title">Dir. Enlace INAREPS</div>
-            <input class="name-field" id="n_enl_ina" value="Cuvillier, Héctor" data-label="Enlace INAREPS">
+            <input class="name-field" id="n_enl_ina" value="Cuvillier, HÃ©ctor" data-label="Enlace INAREPS">
           </div>
           <div class="node homo-cargo">
             <div class="node-title">Dir. Enlace H. Carrillo</div>
             <input class="name-field" id="n_enl_car" value="Alessio, Pedro" data-label="Enlace H. Carrillo">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Dir. Gestión Documental</div>
-            <input class="name-field" id="n_gest_doc" value="Gacio, Daniel" data-label="Gestión Documental">
+            <div class="node-title">Dir. GestiÃ³n Documental</div>
+            <input class="name-field" id="n_gest_doc" value="Gacio, Daniel" data-label="GestiÃ³n Documental">
           </div>
           <div class="node homo-cargo" style="grid-column:span 2;">
             <div class="node-title">Dir. de Sumarios</div>
@@ -634,7 +634,7 @@
       </div>
 
       <div class="subtree">
-        <div class="subtree-label">Coordinaciones — Enlace H. Posadas</div>
+        <div class="subtree-label">Coordinaciones â Enlace H. Posadas</div>
         <div class="grid-3">
           <div class="node coord-node new-cargo">
             <div class="node-title">Coord. Enlace Adm.-Contable</div>
@@ -652,43 +652,43 @@
       </div>
     </div>
 
-    <!-- Col 2: Gestión Estratégica -->
+    <!-- Col 2: GestiÃ³n EstratÃ©gica -->
     <div>
       <div class="dg-block">
         <div class="dg-head">
-          <div class="node-title">Dir. Gral. Gestión Estratégica<br>y Recursos Hospitalarios</div>
-          <input class="name-field" id="n_dg_gest" value="" placeholder="A designar" data-label="DG Gestión Estratégica y Recursos Hospitalarios">
+          <div class="node-title">Dir. Gral. GestiÃ³n EstratÃ©gica<br>y Recursos Hospitalarios</div>
+          <input class="name-field" id="n_dg_gest" value="" placeholder="A designar" data-label="DG GestiÃ³n EstratÃ©gica y Recursos Hospitalarios">
         </div>
         <div class="dg-body grid-3">
           <div class="node homo-cargo">
-            <div class="node-title">Dir. Planificación Estratégica y Gestión de la Calidad</div>
-            <input class="name-field" id="n_planif" value="" placeholder="A designar" data-label="Dir. Planificación Estratégica">
+            <div class="node-title">Dir. PlanificaciÃ³n EstratÃ©gica y GestiÃ³n de la Calidad</div>
+            <input class="name-field" id="n_planif" value="" placeholder="A designar" data-label="Dir. PlanificaciÃ³n EstratÃ©gica">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Dir. Sistemas de Información y Gestión del Conocimiento</div>
-            <input class="name-field" id="n_sist_info" value="" placeholder="A designar" data-label="Dir. Sistemas Información">
+            <div class="node-title">Dir. Sistemas de InformaciÃ³n y GestiÃ³n del Conocimiento</div>
+            <input class="name-field" id="n_sist_info" value="" placeholder="A designar" data-label="Dir. Sistemas InformaciÃ³n">
           </div>
           <div class="node homo-cargo">
-            <div class="node-title">Dir. de Investigación Clínica</div>
-            <input class="name-field" id="n_invest" value="" placeholder="A designar" data-label="Dir. Investigación Clínica">
+            <div class="node-title">Dir. de InvestigaciÃ³n ClÃ­nica</div>
+            <input class="name-field" id="n_invest" value="" placeholder="A designar" data-label="Dir. InvestigaciÃ³n ClÃ­nica">
           </div>
         </div>
       </div>
 
       <div class="dg-block" style="margin-top:14px;">
         <div class="dg-head">
-          <div class="node-title">Dir. Gral. de Coordinación Institucional</div>
-          <input class="name-field" id="n_dg_coord_inst" value="Maestripieri, Juani" data-label="DG Coordinación Institucional">
+          <div class="node-title">Dir. Gral. de CoordinaciÃ³n Institucional</div>
+          <input class="name-field" id="n_dg_coord_inst" value="Maestripieri, Juani" data-label="DG CoordinaciÃ³n Institucional">
         </div>
         <div class="dg-body">
-          <div class="note-box" style="font-size:9px; margin:0;">Denominación modificada (reunión 23/09/25).</div>
+          <div class="note-box" style="font-size:9px; margin:0;">DenominaciÃ³n modificada (reuniÃ³n 23/09/25).</div>
         </div>
       </div>
 
       <div class="dg-block" style="margin-top:14px;">
         <div class="dg-head">
           <div class="node-title">Dir. Gral. Infraestructura<br>y Mantenimiento Hospitalario</div>
-          <input class="name-field" id="n_dg_infra" value="Díaz, Leonardo" data-label="DG Infraestructura y Mantenimiento">
+          <input class="name-field" id="n_dg_infra" value="DÃ­az, Leonardo" data-label="DG Infraestructura y Mantenimiento">
         </div>
       </div>
     </div>
@@ -696,12 +696,12 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     ANEXO Ic — ADQUISICIONES, FINANZAS, JURÍDICO, RRHH, TIC
-═══════════════════════════════════════════ -->
+<!-- ââââââââââââââââââââââââââââââââââââââââââ
+     ANEXO Ic â ADQUISICIONES, FINANZAS, JURÃDICO, RRHH, TIC
+âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ic</span>
-  Adquisiciones · Finanzas y Presupuesto · Asuntos Jurídicos · RRHH · TIC
+  Adquisiciones Â· Finanzas y Presupuesto Â· Asuntos JurÃ­dicos Â· RRHH Â· TIC
 </div>
 
 <div class="content">
@@ -713,7 +713,7 @@
     <div class="dg-block">
       <div class="dg-head">
         <div class="node-title">Dir. Gral. Adquisiciones y Procesos</div>
-        <input class="name-field" id="n_dg_adq" value="Fernández Cerdeña, Sebastián" data-label="DG Adquisiciones y Procesos">
+        <input class="name-field" id="n_dg_adq" value="FernÃ¡ndez CerdeÃ±a, SebastiÃ¡n" data-label="DG Adquisiciones y Procesos">
       </div>
       <div class="dg-body grid-2">
         <div class="node homo-cargo">
@@ -721,17 +721,17 @@
           <input class="name-field" id="n_compras" value="" placeholder="A designar" data-label="Dir. Compras y Contrataciones">
         </div>
         <div class="node homo-cargo">
-          <div class="node-title">Dir. Planificación y Seguimiento de Procesos</div>
-          <input class="name-field" id="n_seg_proc" value="Ramírez, Matías" data-label="Dir. Planificación y Seguimiento Procesos">
+          <div class="node-title">Dir. PlanificaciÃ³n y Seguimiento de Procesos</div>
+          <input class="name-field" id="n_seg_proc" value="RamÃ­rez, MatÃ­as" data-label="Dir. PlanificaciÃ³n y Seguimiento Procesos">
         </div>
         <div class="node new-cargo" style="grid-column:span 2;">
-          <div class="node-title">Dir. Logística Integrada y Abastecimiento Sanitario</div>
-          <input class="name-field" id="n_logist" value="" placeholder="Falta validación Sec. Transformación del Estado" data-label="Dir. Logística y Abastecimiento">
+          <div class="node-title">Dir. LogÃ­stica Integrada y Abastecimiento Sanitario</div>
+          <input class="name-field" id="n_logist" value="" placeholder="Falta validaciÃ³n Sec. TransformaciÃ³n del Estado" data-label="Dir. LogÃ­stica y Abastecimiento">
         </div>
       </div>
       <div class="dg-body" style="padding-top:0; border-top:1px solid var(--border);">
         <div class="node coord-node new-cargo">
-          <div class="node-title">Coordinación de Patrimonio</div>
+          <div class="node-title">CoordinaciÃ³n de Patrimonio</div>
           <input class="name-field" id="n_patrim" value="" placeholder="A designar" data-label="Coord. Patrimonio">
         </div>
       </div>
@@ -742,12 +742,12 @@
       <div class="dg-block">
         <div class="dg-head">
           <div class="node-title">Dir. Gral. Finanzas y Presupuesto</div>
-          <input class="name-field" id="n_dg_fin" value="Alonso, Sebastián" data-label="DG Finanzas y Presupuesto">
+          <input class="name-field" id="n_dg_fin" value="Alonso, SebastiÃ¡n" data-label="DG Finanzas y Presupuesto">
         </div>
         <div class="dg-body grid-2">
           <div class="node homo-cargo">
-            <div class="node-title">Dir. Programación y Control Presupuestario</div>
-            <input class="name-field" id="n_presup" value="Chas, Verónica" data-label="Dir. Programación y Control Presupuestario">
+            <div class="node-title">Dir. ProgramaciÃ³n y Control Presupuestario</div>
+            <input class="name-field" id="n_presup" value="Chas, VerÃ³nica" data-label="Dir. ProgramaciÃ³n y Control Presupuestario">
           </div>
           <div class="node homo-cargo">
             <div class="node-title">Dir. Contabilidad y Finanzas</div>
@@ -757,22 +757,22 @@
       </div>
       <div style="margin-top:10px;">
         <div class="node coord-node homo-cargo">
-          <div class="node-title">Coordinación de Tesorería</div>
-          <input class="name-field" id="n_tesore" value="Solari, Camila" data-label="Coord. Tesorería">
+          <div class="node-title">CoordinaciÃ³n de TesorerÃ­a</div>
+          <input class="name-field" id="n_tesore" value="Solari, Camila" data-label="Coord. TesorerÃ­a">
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Row 2: Jurídico + TIC -->
+  <!-- Row 2: JurÃ­dico + TIC -->
   <div class="two-col" style="margin-top:20px;">
 
-    <!-- Jurídico -->
+    <!-- JurÃ­dico -->
     <div class="dg-block">
       <div class="dg-head">
-        <div class="node-title">Dir. Gral. de Asuntos Jurídicos</div>
-        <input class="name-field" id="n_dg_jur" value="Urrejola, Gastón" data-label="DG Asuntos Jurídicos">
+        <div class="node-title">Dir. Gral. de Asuntos JurÃ­dicos</div>
+        <input class="name-field" id="n_dg_jur" value="Urrejola, GastÃ³n" data-label="DG Asuntos JurÃ­dicos">
       </div>
       <div class="dg-body grid-2">
         <div class="node homo-cargo">
@@ -789,7 +789,7 @@
     <!-- TIC -->
     <div class="dg-block">
       <div class="dg-head">
-        <div class="node-title">Dir. Gral. Tecnología de la<br>Información y Comunicaciones</div>
+        <div class="node-title">Dir. Gral. TecnologÃ­a de la<br>InformaciÃ³n y Comunicaciones</div>
         <input class="name-field" id="n_dg_tic" value="Cohen, Carlos" data-label="DG TIC">
       </div>
       <div class="dg-body grid-2">
@@ -798,8 +798,8 @@
           <input class="name-field" id="n_dev_sist" value="" placeholder="A designar" data-label="Dir. Desarrollo de Sistemas">
         </div>
         <div class="node homo-cargo">
-          <div class="node-title">Dir. Infraestructura y Seguridad Informática</div>
-          <input class="name-field" id="n_seg_info" value="" placeholder="A designar" data-label="Dir. Infraestructura y Seguridad Informática">
+          <div class="node-title">Dir. Infraestructura y Seguridad InformÃ¡tica</div>
+          <input class="name-field" id="n_seg_info" value="" placeholder="A designar" data-label="Dir. Infraestructura y Seguridad InformÃ¡tica">
         </div>
       </div>
     </div>
@@ -810,25 +810,25 @@
   <div style="margin-top:20px;">
     <div class="dg-block">
       <div class="dg-head">
-        <div class="node-title">Dirección General de Recursos Humanos</div>
+        <div class="node-title">DirecciÃ³n General de Recursos Humanos</div>
         <input class="name-field" id="n_dg_rrhh" value="" placeholder="A designar" data-label="DG Recursos Humanos">
       </div>
       <div class="dg-body grid-4">
         <div class="node homo-cargo">
-          <div class="node-title">Dir. Administración de Personal</div>
-          <input class="name-field" id="n_adm_pers" value="Raissa, Nadia" data-label="Dir. Administración de Personal">
+          <div class="node-title">Dir. AdministraciÃ³n de Personal</div>
+          <input class="name-field" id="n_adm_pers" value="Raissa, Nadia" data-label="Dir. AdministraciÃ³n de Personal">
         </div>
         <div class="node homo-cargo">
-          <div class="node-title">Dir. Desarrollo de Carrera y Capacitación</div>
-          <input class="name-field" id="n_cap" value="" placeholder="A designar" data-label="Dir. Desarrollo de Carrera y Capacitación">
+          <div class="node-title">Dir. Desarrollo de Carrera y CapacitaciÃ³n</div>
+          <input class="name-field" id="n_cap" value="" placeholder="A designar" data-label="Dir. Desarrollo de Carrera y CapacitaciÃ³n">
         </div>
         <div class="node homo-cargo">
           <div class="node-title">Dir. Salud Ocupacional</div>
           <input class="name-field" id="n_sal_ocup" value="" placeholder="A designar" data-label="Dir. Salud Ocupacional">
         </div>
         <div class="node coord-node homo-cargo">
-          <div class="node-title">Coord. Liquidación de Haberes</div>
-          <input class="name-field" id="n_haberes" value="Christiansen, Andrés" data-label="Coord. Liquidación de Haberes">
+          <div class="node-title">Coord. LiquidaciÃ³n de Haberes</div>
+          <input class="name-field" id="n_haberes" value="Christiansen, AndrÃ©s" data-label="Coord. LiquidaciÃ³n de Haberes">
         </div>
       </div>
     </div>
@@ -838,8 +838,8 @@
 
 <!-- FOOTER -->
 <div style="background:var(--navy); color:rgba(255,255,255,0.4); padding:10px 28px; font-size:9px; display:flex; justify-content:space-between; border-top:3px solid var(--gold); margin-top:16px;">
-  <span>ANES · Administración Nacional de Establecimientos de Salud · Ministerio de Salud</span>
-  <span>Planilla Anexa al Artículo X° · Anexos Ia / Ib / Ic · Versión Final con Designaciones</span>
+  <span>ANES Â· AdministraciÃ³n Nacional de Establecimientos de Salud Â· Ministerio de Salud</span>
+  <span>Planilla Anexa al ArtÃ­culo XÂ° Â· Anexos Ia / Ib / Ic Â· VersiÃ³n Final con Designaciones</span>
 </div>
 
 <!-- CV MODAL -->
@@ -850,57 +850,57 @@
         <h3 id="cvModalTitle">Vincular CV</h3>
         <p id="cvModalSub">Cargo</p>
       </div>
-      <button class="cv-mclose" onclick="closeCV()">✕</button>
+      <button class="cv-mclose" onclick="closeCV()">â</button>
     </div>
     <div class="cv-mbody">
       <!-- URL externa -->
       <!-- archivo local eliminado -->
       <!-- Estado actual -->
       <div class="cv-current" id="cvCurrent" style="display:none;">
-        <span>📎</span>
+        <span>ð</span>
         <div><strong>CV vinculado:</strong><br><a id="cvCurrentLink" href="#" target="_blank">ver enlace</a></div>
       </div>
     </div>
     <div class="cv-mfoot">
-      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">🗑 Quitar CV</button>
+      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">ð Quitar CV</button>
       <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCV()">Cancelar</button>
-      <button class="btn btn-green" onclick="saveCV()">💾 Guardar</button>
+      <button class="btn btn-green" onclick="saveCV()">ð¾ Guardar</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL CONFIGURACIÓN JSONBIN -->
+<!-- MODAL CONFIGURACIÃN JSONBIN -->
 <div class="cv-overlay" id="cfgOverlay">
   <div class="cv-modal" style="width:480px;">
     <div class="cv-mhead">
       <div>
-        <h3>⚙ Configuración de sincronización</h3>
+        <h3>â ConfiguraciÃ³n de sincronizaciÃ³n</h3>
         <p>Conectar con JSONBin.io para guardar en la nube</p>
       </div>
-      <button class="cv-mclose" onclick="closeCfg()">✕</button>
+      <button class="cv-mclose" onclick="closeCfg()">â</button>
     </div>
     <div class="cv-mbody" style="gap:14px;">
       <div style="background:#f0f4ff;border:1px solid #c0d0f0;border-radius:5px;padding:11px 13px;font-size:10.5px;line-height:1.7;color:#1a2a5a;">
-        <strong>Cómo configurar (1 sola vez):</strong><br>
-        1. Entrá a <a href="https://jsonbin.io" target="_blank" style="color:var(--blue);font-weight:600;">jsonbin.io</a> y creá una cuenta gratuita.<br>
-        2. Copiá tu <strong>Master Key</strong> desde el panel → API Keys.<br>
-        3. Creá un nuevo Bin vacío (<code>{}</code>) y copiá su <strong>Bin ID</strong>.<br>
-        4. Pegá ambos datos aquí abajo y hacé clic en <em>Guardar configuración</em>.
+        <strong>CÃ³mo configurar (1 sola vez):</strong><br>
+        1. EntrÃ¡ a <a href="https://jsonbin.io" target="_blank" style="color:var(--blue);font-weight:600;">jsonbin.io</a> y creÃ¡ una cuenta gratuita.<br>
+        2. CopiÃ¡ tu <strong>Master Key</strong> desde el panel â API Keys.<br>
+        3. CreÃ¡ un nuevo Bin vacÃ­o (<code>{}</code>) y copiÃ¡ su <strong>Bin ID</strong>.<br>
+        4. PegÃ¡ ambos datos aquÃ­ abajo y hacÃ© clic en <em>Guardar configuraciÃ³n</em>.
       </div>
       <div class="cv-row">
-        <label>🔑 Master Key (X-Master-Key)</label>
-        <input type="password" id="cfgMasterKey" placeholder="$2a$10$…">
+        <label>ð Master Key (X-Master-Key)</label>
+        <input type="password" id="cfgMasterKey" placeholder="$2a$10$â¦">
       </div>
       <div class="cv-row">
-        <label>🗂 Bin ID</label>
-        <input type="text" id="cfgBinId" placeholder="64f3a1b2e3…">
+        <label>ð Bin ID</label>
+        <input type="text" id="cfgBinId" placeholder="64f3a1b2e3â¦">
       </div>
       <div id="cfgStatus" style="font-size:10px;color:var(--text-muted);min-height:16px;"></div>
     </div>
     <div class="cv-mfoot">
-      <button class="btn btn-danger" onclick="clearCfg()">🗑 Borrar configuración</button>
+      <button class="btn btn-danger" onclick="clearCfg()">ð Borrar configuraciÃ³n</button>
       <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCfg()">Cancelar</button>
-      <button class="btn btn-green" onclick="saveCfg()">✓ Guardar configuración</button>
+      <button class="btn btn-green" onclick="saveCfg()">â Guardar configuraciÃ³n</button>
     </div>
   </div>
 </div>
@@ -912,16 +912,16 @@
 <input type="file" id="file-input" accept=".json" style="display:none" onchange="loadFile(event)">
 
 <script>
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  ESTADO GLOBAL
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let cvStore          = {};
 let currentCvNodeId  = null;
 let isSyncing        = false;
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  JSONBIN HELPERS
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function getBinCfg() {
 const DEFAULT_KEY = '$2a$10$MJ/T9MC/WUUFFP4jOzU0tee1k56ASFkgrMLIu82qUQkOiV6.WtZpy';
 const DEFAULT_BIN_ID = '6a204050da38895dfe81704f';
@@ -956,9 +956,9 @@ async function binWrite(payload) {
   if (!r.ok) throw new Error('Error guardando en Bin: ' + r.status);
 }
 
-// ═══════════════════════════════════════════════════════════
-//  SINCRONIZACIÓN
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+//  SINCRONIZACIÃN
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 async function syncFromCloud() {
   if (!hasBinCfg()) return;
   setSyncIndicator('syncing');
@@ -976,32 +976,32 @@ async function syncFromCloud() {
       }
     });
     cvStore = cvs;
-    // También guardar local como caché
+    // TambiÃ©n guardar local como cachÃ©
     localStorage.setItem('anes_org_names', JSON.stringify(names));
     localStorage.setItem('anes_org_cvs',   JSON.stringify(cvs));
     refreshAllCvBtns();
     setSyncIndicator('ok');
-    showToast('☁ Datos sincronizados desde la nube');
+    showToast('â Datos sincronizados desde la nube');
   } catch(e) {
     setSyncIndicator('error');
-    showToast('⚠ Sin conexión — usando datos locales');
+    showToast('â  Sin conexiÃ³n â usando datos locales');
     loadFromLocal();
   }
 }
 
 async function pushToCloud(showMsg = true) {
-  if (!hasBinCfg()) { persistLocal(); if(showMsg) showToast('✓ Guardado localmente'); return; }
+  if (!hasBinCfg()) { persistLocal(); if(showMsg) showToast('â Guardado localmente'); return; }
   setSyncIndicator('syncing');
   try {
     const payload = { names: collectNames(), cvs: cvStore };
     await binWrite(payload);
     persistLocal();
     setSyncIndicator('ok');
-    if (showMsg) showToast('☁ Guardado en la nube');
+    if (showMsg) showToast('â Guardado en la nube');
   } catch(e) {
     setSyncIndicator('error');
     persistLocal();
-    if (showMsg) showToast('⚠ Error en la nube — guardado solo localmente');
+    if (showMsg) showToast('â  Error en la nube â guardado solo localmente');
   }
 }
 
@@ -1009,19 +1009,19 @@ function setSyncIndicator(state) {
   const ind = document.getElementById('syncIndicator');
   if (!ind) return;
   const map = {
-    syncing: { text: '↻ Sincronizando…', color: '#c9a227' },
-    ok:      { text: '☁ Sincronizado',   color: '#2e7d52' },
-    error:   { text: '⚠ Sin conexión',   color: '#c0392b' },
-    local:   { text: '💾 Solo local',     color: '#5a6a85' }
+    syncing: { text: 'â» Sincronizandoâ¦', color: '#c9a227' },
+    ok:      { text: 'â Sincronizado',   color: '#2e7d52' },
+    error:   { text: 'â  Sin conexiÃ³n',   color: '#c0392b' },
+    local:   { text: 'ð¾ Solo local',     color: '#5a6a85' }
   };
   const s = map[state] || map.local;
   ind.textContent  = s.text;
   ind.style.color  = s.color;
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  PERSISTENCIA LOCAL
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function collectNames() {
   const data = {};
   document.querySelectorAll('.name-field').forEach(input => {
@@ -1050,16 +1050,16 @@ function loadFromLocal() {
   } catch {}
 }
 
-// ═══════════════════════════════════════════════════════════
-//  BOTÓN GUARDAR
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+//  BOTÃN GUARDAR
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 async function saveAll() {
   await pushToCloud(true);
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  EXPORTAR / IMPORTAR JSON
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function exportJSON() {
   const payload = { names: collectNames(), cvs: cvStore };
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
@@ -1069,7 +1069,7 @@ function exportJSON() {
   a.download = 'ANES_Designaciones_' + new Date().toISOString().slice(0,10) + '.json';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('⬇ Archivo exportado');
+  showToast('â¬ Archivo exportado');
 }
 
 function importJSON() { document.getElementById('file-input').click(); }
@@ -1096,16 +1096,16 @@ function loadFile(event) {
       cvStore = cvs;
       refreshAllCvBtns();
       await pushToCloud(false);
-      showToast(`✓ ${count} campos importados y sincronizados`);
-    } catch { showToast('✗ Error al leer el archivo'); }
+      showToast(`â ${count} campos importados y sincronizados`);
+    } catch { showToast('â Error al leer el archivo'); }
     event.target.value = '';
   };
   reader.readAsText(file);
 }
 
-// ═══════════════════════════════════════════════════════════
-//  MODAL CONFIGURACIÓN JSONBIN
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+//  MODAL CONFIGURACIÃN JSONBIN
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function openCfg() {
   const { key, binId } = getBinCfg();
   document.getElementById('cfgMasterKey').value = key;
@@ -1119,16 +1119,16 @@ function closeCfg() {
 async function saveCfg() {
   const key   = document.getElementById('cfgMasterKey').value.trim();
   const binId = document.getElementById('cfgBinId').value.trim();
-  if (!key || !binId) { document.getElementById('cfgStatus').textContent = '⚠ Completá ambos campos.'; return; }
+  if (!key || !binId) { document.getElementById('cfgStatus').textContent = 'â  CompletÃ¡ ambos campos.'; return; }
   localStorage.setItem('anes_bin_key',  key);
   localStorage.setItem('anes_bin_id',   binId);
-  document.getElementById('cfgStatus').textContent = '↻ Verificando conexión…';
+  document.getElementById('cfgStatus').textContent = 'â» Verificando conexiÃ³nâ¦';
   try {
     await binRead();
-    document.getElementById('cfgStatus').textContent = '✓ Conexión exitosa.';
+    document.getElementById('cfgStatus').textContent = 'â ConexiÃ³n exitosa.';
     setTimeout(() => { closeCfg(); syncFromCloud(); }, 800);
   } catch {
-    document.getElementById('cfgStatus').textContent = '✗ No se pudo conectar. Verificá la Key y el Bin ID.';
+    document.getElementById('cfgStatus').textContent = 'â No se pudo conectar. VerificÃ¡ la Key y el Bin ID.';
   }
 }
 function clearCfg() {
@@ -1136,16 +1136,16 @@ function clearCfg() {
   localStorage.removeItem('anes_bin_id');
   document.getElementById('cfgMasterKey').value = '';
   document.getElementById('cfgBinId').value     = '';
-  document.getElementById('cfgStatus').textContent = 'Configuración borrada. Se usará solo almacenamiento local.';
+  document.getElementById('cfgStatus').textContent = 'ConfiguraciÃ³n borrada. Se usarÃ¡ solo almacenamiento local.';
   setSyncIndicator('local');
 }
 document.getElementById('cfgOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeCfg();
 });
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  NODOS: INICIALIZAR Y REFRESCAR
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function initNodes() {
   document.querySelectorAll('.name-field').forEach(input => {
     const nodeId = input.id;
@@ -1154,7 +1154,7 @@ function initNodes() {
     if (!parent.querySelector('.cv-zone')) {
       const zone = document.createElement('div');
       zone.className = 'cv-zone';
-      zone.innerHTML = `<button class="cv-btn" data-node="${nodeId}">📎 CV</button>`;
+      zone.innerHTML = `<button class="cv-btn" data-node="${nodeId}">ð CV</button>`;
       input.after(zone);
     }
   });
@@ -1166,13 +1166,13 @@ function refreshAllCvBtns() {
     const id = btn.dataset.node;
     if (cvStore[id]) {
       btn.classList.add('has-cv');
-      btn.innerHTML   = '📎 Ver CV';
+      btn.innerHTML   = 'ð Ver CV';
       btn.title       = cvStore[id].name || cvStore[id].url;
       btn.onclick     = (e) => { e.stopPropagation(); window.open(cvStore[id].url, '_blank'); };
       btn.ondblclick  = (e) => { e.stopPropagation(); openCV(id, e); };
     } else {
       btn.classList.remove('has-cv');
-      btn.innerHTML   = '📎 CV';
+      btn.innerHTML   = 'ð CV';
       btn.title       = 'Vincular CV';
       btn.onclick     = (e) => { e.stopPropagation(); openCV(id, e); };
       btn.ondblclick  = null;
@@ -1180,17 +1180,17 @@ function refreshAllCvBtns() {
   });
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  MODAL CV
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function openCV(nodeId, e) {
   if (e) e.stopPropagation();
   currentCvNodeId = nodeId;
   const input = document.getElementById(nodeId);
   const label = input ? (input.dataset.label || nodeId) : nodeId;
-  const name  = input ? (input.value || '—') : '—';
+  const name  = input ? (input.value || 'â') : 'â';
   document.getElementById('cvModalTitle').textContent = 'Vincular CV';
-  document.getElementById('cvModalSub').textContent   = label + (name && name !== '—' ? ' · ' + name : '');
+  document.getElementById('cvModalSub').textContent   = label + (name && name !== 'â' ? ' Â· ' + name : '');
   document.getElementById('cvUrl').value  = '';
   document.getElementById('cvFile').value = '';
   const existing  = cvStore[nodeId];
@@ -1225,6 +1225,9 @@ showToast('🔗 CV vinculado correctamente');
 } else {
 showToast('⚠ Ingresá una URL externa (Drive, Dropbox, etc.)');
 }
+} else {
+showToast('â  IngresÃ¡ una URL externa (Drive, Dropbox, etc.)');
+}
 }
 
 async function removeCV() {
@@ -1233,16 +1236,16 @@ async function removeCV() {
   await pushToCloud(false);
   refreshAllCvBtns();
   closeCV();
-  showToast('🗑 CV eliminado');
+  showToast('ð CV eliminado');
 }
 
 document.getElementById('cvOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeCV();
 });
 
-// ═══════════════════════════════════════════════════════════
-//  CAMPOS EDITABLES — MARCAR MODIFICADOS
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+//  CAMPOS EDITABLES â MARCAR MODIFICADOS
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 document.querySelectorAll('.name-field').forEach(input => {
   const original = input.value;
   input.classList.toggle('empty', !input.value);
@@ -1255,9 +1258,9 @@ document.querySelectorAll('.name-field').forEach(input => {
   });
 });
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  TOAST
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1265,11 +1268,11 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 //  ARRANQUE
-// ═══════════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 (function init() {
-  loadFromLocal();   // carga caché local primero (respuesta inmediata)
+  loadFromLocal();   // carga cachÃ© local primero (respuesta inmediata)
   initNodes();
   if (hasBinCfg()) {
     setSyncIndicator('syncing');
