@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ANES â Estructura Organizativa Editable</title>
+<title>ANES &ndash; Estructura Organizativa Editable</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap');
 
@@ -481,7 +481,7 @@
 </div>
 
 <!-- ââââââââââââââââââââââââââââââââââââââââââ
-     ANEXO Ia â UAI
+     ANEXO Ia &mdash; UAI
 âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ia</span>
@@ -584,11 +584,11 @@
 </div>
 
 <!-- ââââââââââââââââââââââââââââââââââââââââââ
-     ANEXO Ib â ENLACE y GESTIÓN ESTRATÉGICA
+     ANEXO Ib &mdash; ENLACE y GESTIÓN ESTRATÉGICA
 âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ib</span>
-  Coordinación Legal y Administrativa â Enlace Hospitalario · Gestión Estratégica
+  Coordinación Legal y Administrativa &mdash; Enlace Hospitalario · Gestión Estratégica
 </div>
 
 <div class="content">
@@ -634,7 +634,7 @@
       </div>
 
       <div class="subtree">
-        <div class="subtree-label">Coordinaciones â Enlace H. Posadas</div>
+        <div class="subtree-label">Coordinaciones &mdash; Enlace H. Posadas</div>
         <div class="grid-3">
           <div class="node coord-node new-cargo">
             <div class="node-title">Coord. Enlace Adm.-Contable</div>
@@ -697,7 +697,7 @@
 </div>
 
 <!-- ââââââââââââââââââââââââââââââââââââââââââ
-     ANEXO Ic â ADQUISICIONES, FINANZAS, JURÍDICO, RRHH, TIC
+     ANEXO Ic &mdash; ADQUISICIONES, FINANZAS, JURÍDICO, RRHH, TIC
 âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ic</span>
@@ -876,13 +876,13 @@
         <h3>⚙️ Configuración de sincronización</h3>
         <p>Conectar con JSONBin.io para guardar en la nube</p>
       </div>
-      <button class="cv-mclose" onclick="closeCfg()">â</button>
+      <button class="cv-mclose" onclick="closeCfg()">&#10005;</button>
     </div>
     <div class="cv-mbody" style="gap:14px;">
       <div style="background:#f0f4ff;border:1px solid #c0d0f0;border-radius:5px;padding:11px 13px;font-size:10.5px;line-height:1.7;color:#1a2a5a;">
         <strong>Cómo configurar (1 sola vez):</strong><br>
         1. Entrá a <a href="https://jsonbin.io" target="_blank" style="color:var(--blue);font-weight:600;">jsonbin.io</a> y creá una cuenta gratuita.<br>
-        2. Copiá tu <strong>Master Key</strong> desde el panel â API Keys.<br>
+        2. Copiá tu <strong>Master Key</strong> desde el panel &rarr; API Keys.<br>
         3. Creá un nuevo Bin vacío (<code>{}</code>) y copiá su <strong>Bin ID</strong>.<br>
         4. Pegá ambos datos aquí abajo y hacé clic en <em>Guardar configuración</em>.
       </div>
@@ -983,7 +983,7 @@ async function syncFromCloud() {
     showToast('☁️ Datos sincronizados desde la nube');
   } catch(e) {
     setSyncIndicator('error');
-    showToast('⚠️ Sin conexión â usando datos locales');
+    showToast('⚠️ Sin conexión &mdash; usando datos locales');
     loadFromLocal();
   }
 }
@@ -1000,7 +1000,7 @@ async function pushToCloud(showMsg = true) {
   } catch(e) {
     setSyncIndicator('error');
     persistLocal();
-    if (showMsg) showToast('⚠️ Error en la nube â guardado solo localmente');
+    if (showMsg) showToast('⚠️ Error en la nube &mdash; guardado solo localmente');
   }
 }
 
@@ -1096,7 +1096,7 @@ function loadFile(event) {
       refreshAllCvBtns();
       await pushToCloud(false);
       showToast(`✔️ ${count} campos importados y sincronizados`);
-    } catch { showToast('â Error al leer el archivo'); }
+    } catch { showToast('&#10007; Error al leer el archivo'); }
     event.target.value = '';
   };
   reader.readAsText(file);
@@ -1127,7 +1127,7 @@ async function saveCfg() {
     document.getElementById('cfgStatus').textContent = '✔️ Conexión exitosa.';
     setTimeout(() => { closeCfg(); syncFromCloud(); }, 800);
   } catch {
-    document.getElementById('cfgStatus').textContent = 'â No se pudo conectar. Verificá la Key y el Bin ID.';
+    document.getElementById('cfgStatus').textContent = '&#10007; No se pudo conectar. Verificá la Key y el Bin ID.';
   }
 }
 function clearCfg() {
@@ -1187,9 +1187,9 @@ function openCV(nodeId, e) {
   currentCvNodeId = nodeId;
   const input = document.getElementById(nodeId);
   const label = input ? (input.dataset.label || nodeId) : nodeId;
-  const name  = input ? (input.value || 'â') : 'â';
+  const name  = input ? (input.value || '&mdash;') : '&mdash;';
   document.getElementById('cvModalTitle').textContent = 'Vincular CV';
-  document.getElementById('cvModalSub').textContent   = label + (name && name !== 'â' ? ' · ' + name : '');
+  document.getElementById('cvModalSub').textContent   = label + (name && name !== '&mdash;' ? ' · ' + name : '');
   document.getElementById('cvUrl').value  = '';
   document.getElementById('cvFile').value = '';
   const existing  = cvStore[nodeId];
@@ -1240,7 +1240,7 @@ document.getElementById('cvOverlay').addEventListener('click', function(e) {
 });
 
 // âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-//  CAMPOS EDITABLES â MARCAR MODIFICADOS
+//  CAMPOS EDITABLES &mdash; MARCAR MODIFICADOS
 // âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 document.querySelectorAll('.name-field').forEach(input => {
   const original = input.value;
