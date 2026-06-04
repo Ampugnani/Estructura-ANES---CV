@@ -1191,7 +1191,6 @@ function openCV(nodeId, e) {
   document.getElementById('cvModalTitle').textContent = 'Vincular CV';
   document.getElementById('cvModalSub').textContent   = label + (name && name !== '&mdash;' ? ' · ' + name : '');
   document.getElementById('cvUrl').value  = '';
-  document.getElementById('cvFile').value = '';
   const existing  = cvStore[nodeId];
   const curDiv    = document.getElementById('cvCurrent');
   const curLink   = document.getElementById('cvCurrentLink');
