@@ -844,29 +844,28 @@
 
 <!-- CV MODAL -->
 <div class="cv-overlay" id="cvOverlay">
-  <div class="cv-modal">
-    <div class="cv-mhead">
-      <div>
-        <h3 id="cvModalTitle">Vincular CV</h3>
-        <p id="cvModalSub">Cargo</p>
-      </div>
-      <button class="cv-mclose" onclick="closeCV()">â</button>
-    </div>
-    <div class="cv-mbody">
-      <!-- URL externa -->
-      <!-- archivo local eliminado -->
-      <!-- Estado actual -->
-      <div class="cv-current" id="cvCurrent" style="display:none;">
-        <span>📎</span>
-        <div><strong>CV vinculado:</strong><br><a id="cvCurrentLink" href="#" target="_blank">ver enlace</a></div>
-      </div>
-    </div>
-    <div class="cv-mfoot">
-      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">🗑️ Quitar CV</button>
-      <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCV()">Cancelar</button>
-      <button class="btn btn-green" onclick="saveCV()">💾 Guardar</button>
-    </div>
-  </div>
+<div class="cv-modal">
+<div class="cv-mhead">
+<div>
+<h3 id="cvModalTitle">Vincular CV</h3>
+<p id="cvModalSub">Cargo</p>
+</div>
+<button class="cv-mclose" onclick="closeCV()">✕</button>
+</div>
+<div class="cv-mbody">
+<label style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);display:block;margin-bottom:4px">URL del CV (Drive, Dropbox, etc.)</label>
+<input type="url" id="cvUrl" placeholder="https://drive.google.com/..." style="width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:4px;font-size:12px;font-family:inherit;background:#fff;color:var(--text);margin-bottom:10px">
+<div id="cvCurrent" style="display:none;background:var(--bg);border-radius:6px;padding:10px 12px;display:flex;align-items:center;gap:10px">
+<span>📎</span>
+<div><strong>CV vinculado:</strong><br><a id="cvCurrentLink" href="#" target="_blank">ver CV</a>
+</div>
+</div>
+<div class="cv-mfoot">
+<button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none">🗑️ Quitar</button>
+<button class="btn btn-green" onclick="saveCV()">💾 Guardar</button>
+</div>
+</div>
+</div>
 </div>
 
 <!-- MODAL CONFIGURACIÓN JSONBIN -->
@@ -1281,4 +1280,4 @@ function showToast(msg) {
 </script>
 
 </body>
-  </html>
+</html>
