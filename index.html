@@ -456,15 +456,15 @@
       <h1>ANES</h1>
       <p>Estructura Organizativa · Versión Final</p>
     </div>
-    <span class="edit-badge">â Editable</span>
+    <span class="edit-badge">✏️ Editable</span>
   </div>
   <div class="toolbar-right">
-    <span id="syncIndicator" style="font-size:10px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.5);">ð¾ Solo local</span>
-    <button class="btn btn-outline" onclick="openCfg()" title="Configurar sincronización en la nube">â Nube</button>
-    <button class="btn btn-outline" onclick="exportJSON()">â¬ Exportar</button>
-    <button class="btn btn-outline" onclick="importJSON()">â¬ Importar</button>
-    <button class="btn btn-gold" onclick="window.print()">ð¨ Imprimir</button>
-    <button class="btn btn-green" onclick="saveAll()">ð¾ Guardar</button>
+    <span id="syncIndicator" style="font-size:10px;font-weight:600;letter-spacing:0.3px;color:rgba(255,255,255,0.5);">💾 Solo local</span>
+    <button class="btn btn-outline" onclick="openCfg()" title="Configurar sincronización en la nube">⚙️ Nube</button>
+    <button class="btn btn-outline" onclick="exportJSON()">⬇️ Exportar</button>
+    <button class="btn btn-outline" onclick="importJSON()">⬆️ Importar</button>
+    <button class="btn btn-gold" onclick="window.print()">🖨️ Imprimir</button>
+    <button class="btn btn-green" onclick="saveAll()">💾 Guardar</button>
   </div>
 </div>
 
@@ -476,7 +476,7 @@
   <div class="leg-item"><span class="leg-dot" style="background:var(--purple)"></span> A evaluar</div>
   <div class="leg-item"><span class="leg-dot" style="background:var(--red)"></span> Se derogan</div>
   <div class="leg-item" style="margin-left:auto; color:var(--blue); font-style:italic; text-transform:none; letter-spacing:0; font-weight:400;">
-    Clic en el nombre para editar · ð para vincular CV
+    Clic en el nombre para editar · 📎 para vincular CV
   </div>
 </div>
 
@@ -857,14 +857,14 @@
       <!-- archivo local eliminado -->
       <!-- Estado actual -->
       <div class="cv-current" id="cvCurrent" style="display:none;">
-        <span>ð</span>
+        <span>📎</span>
         <div><strong>CV vinculado:</strong><br><a id="cvCurrentLink" href="#" target="_blank">ver enlace</a></div>
       </div>
     </div>
     <div class="cv-mfoot">
-      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">ð Quitar CV</button>
+      <button class="btn btn-danger" id="cvRemoveBtn" onclick="removeCV()" style="display:none;">🗑️ Quitar CV</button>
       <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCV()">Cancelar</button>
-      <button class="btn btn-green" onclick="saveCV()">ð¾ Guardar</button>
+      <button class="btn btn-green" onclick="saveCV()">💾 Guardar</button>
     </div>
   </div>
 </div>
@@ -874,7 +874,7 @@
   <div class="cv-modal" style="width:480px;">
     <div class="cv-mhead">
       <div>
-        <h3>â Configuración de sincronización</h3>
+        <h3>⚙️ Configuración de sincronización</h3>
         <p>Conectar con JSONBin.io para guardar en la nube</p>
       </div>
       <button class="cv-mclose" onclick="closeCfg()">â</button>
@@ -889,18 +889,18 @@
       </div>
       <div class="cv-row">
         <label>ð Master Key (X-Master-Key)</label>
-        <input type="password" id="cfgMasterKey" placeholder="$2a$10$â¦">
+        <input type="password" id="cfgMasterKey" placeholder="$2a$10$…">
       </div>
       <div class="cv-row">
         <label>ð Bin ID</label>
-        <input type="text" id="cfgBinId" placeholder="64f3a1b2e3â¦">
+        <input type="text" id="cfgBinId" placeholder="64f3a1b2e3…">
       </div>
       <div id="cfgStatus" style="font-size:10px;color:var(--text-muted);min-height:16px;"></div>
     </div>
     <div class="cv-mfoot">
-      <button class="btn btn-danger" onclick="clearCfg()">ð Borrar configuración</button>
+      <button class="btn btn-danger" onclick="clearCfg()">🗑️ Borrar configuración</button>
       <button class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted);" onclick="closeCfg()">Cancelar</button>
-      <button class="btn btn-green" onclick="saveCfg()">â Guardar configuración</button>
+      <button class="btn btn-green" onclick="saveCfg()">✔️ Guardar configuración</button>
     </div>
   </div>
 </div>
@@ -981,27 +981,27 @@ async function syncFromCloud() {
     localStorage.setItem('anes_org_cvs',   JSON.stringify(cvs));
     refreshAllCvBtns();
     setSyncIndicator('ok');
-    showToast('â Datos sincronizados desde la nube');
+    showToast('☁️ Datos sincronizados desde la nube');
   } catch(e) {
     setSyncIndicator('error');
-    showToast('â  Sin conexión â usando datos locales');
+    showToast('⚠️ Sin conexión â usando datos locales');
     loadFromLocal();
   }
 }
 
 async function pushToCloud(showMsg = true) {
-  if (!hasBinCfg()) { persistLocal(); if(showMsg) showToast('â Guardado localmente'); return; }
+  if (!hasBinCfg()) { persistLocal(); if(showMsg) showToast('✔️ Guardado localmente'); return; }
   setSyncIndicator('syncing');
   try {
     const payload = { names: collectNames(), cvs: cvStore };
     await binWrite(payload);
     persistLocal();
     setSyncIndicator('ok');
-    if (showMsg) showToast('â Guardado en la nube');
+    if (showMsg) showToast('☁️ Guardado en la nube');
   } catch(e) {
     setSyncIndicator('error');
     persistLocal();
-    if (showMsg) showToast('â  Error en la nube â guardado solo localmente');
+    if (showMsg) showToast('⚠️ Error en la nube â guardado solo localmente');
   }
 }
 
@@ -1009,10 +1009,10 @@ function setSyncIndicator(state) {
   const ind = document.getElementById('syncIndicator');
   if (!ind) return;
   const map = {
-    syncing: { text: 'â» Sincronizandoâ¦', color: '#c9a227' },
-    ok:      { text: 'â Sincronizado',   color: '#2e7d52' },
-    error:   { text: 'â  Sin conexión',   color: '#c0392b' },
-    local:   { text: 'ð¾ Solo local',     color: '#5a6a85' }
+    syncing: { text: '↻ Sincronizando…', color: '#c9a227' },
+    ok:      { text: '☁️ Sincronizado',   color: '#2e7d52' },
+    error:   { text: '⚠️ Sin conexión',   color: '#c0392b' },
+    local:   { text: '💾 Solo local',     color: '#5a6a85' }
   };
   const s = map[state] || map.local;
   ind.textContent  = s.text;
@@ -1069,7 +1069,7 @@ function exportJSON() {
   a.download = 'ANES_Designaciones_' + new Date().toISOString().slice(0,10) + '.json';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('â¬ Archivo exportado');
+  showToast('⬇️ Archivo exportado');
 }
 
 function importJSON() { document.getElementById('file-input').click(); }
@@ -1096,7 +1096,7 @@ function loadFile(event) {
       cvStore = cvs;
       refreshAllCvBtns();
       await pushToCloud(false);
-      showToast(`â ${count} campos importados y sincronizados`);
+      showToast(`✔️ ${count} campos importados y sincronizados`);
     } catch { showToast('â Error al leer el archivo'); }
     event.target.value = '';
   };
@@ -1119,13 +1119,13 @@ function closeCfg() {
 async function saveCfg() {
   const key   = document.getElementById('cfgMasterKey').value.trim();
   const binId = document.getElementById('cfgBinId').value.trim();
-  if (!key || !binId) { document.getElementById('cfgStatus').textContent = 'â  Completá ambos campos.'; return; }
+  if (!key || !binId) { document.getElementById('cfgStatus').textContent = '⚠️ Completá ambos campos.'; return; }
   localStorage.setItem('anes_bin_key',  key);
   localStorage.setItem('anes_bin_id',   binId);
-  document.getElementById('cfgStatus').textContent = 'â» Verificando conexiónâ¦';
+  document.getElementById('cfgStatus').textContent = '↻ Verificando conexión…';
   try {
     await binRead();
-    document.getElementById('cfgStatus').textContent = 'â Conexión exitosa.';
+    document.getElementById('cfgStatus').textContent = '✔️ Conexión exitosa.';
     setTimeout(() => { closeCfg(); syncFromCloud(); }, 800);
   } catch {
     document.getElementById('cfgStatus').textContent = 'â No se pudo conectar. Verificá la Key y el Bin ID.';
@@ -1154,7 +1154,7 @@ function initNodes() {
     if (!parent.querySelector('.cv-zone')) {
       const zone = document.createElement('div');
       zone.className = 'cv-zone';
-      zone.innerHTML = `<button class="cv-btn" data-node="${nodeId}">ð CV</button>`;
+      zone.innerHTML = `<button class="cv-btn" data-node="${nodeId}">📎 CV</button>`;
       input.after(zone);
     }
   });
@@ -1166,13 +1166,13 @@ function refreshAllCvBtns() {
     const id = btn.dataset.node;
     if (cvStore[id]) {
       btn.classList.add('has-cv');
-      btn.innerHTML   = 'ð Ver CV';
+      btn.innerHTML   = '📎 Ver CV';
       btn.title       = cvStore[id].name || cvStore[id].url;
       btn.onclick     = (e) => { e.stopPropagation(); window.open(cvStore[id].url, '_blank'); };
       btn.ondblclick  = (e) => { e.stopPropagation(); openCV(id, e); };
     } else {
       btn.classList.remove('has-cv');
-      btn.innerHTML   = 'ð CV';
+      btn.innerHTML   = '📎 CV';
       btn.title       = 'Vincular CV';
       btn.onclick     = (e) => { e.stopPropagation(); openCV(id, e); };
       btn.ondblclick  = null;
@@ -1233,7 +1233,7 @@ async function removeCV() {
   await pushToCloud(false);
   refreshAllCvBtns();
   closeCV();
-  showToast('ð CV eliminado');
+  showToast('🗑️ CV eliminado');
 }
 
 document.getElementById('cvOverlay').addEventListener('click', function(e) {
@@ -1281,4 +1281,4 @@ function showToast(msg) {
 </script>
 
 </body>
-</html>
+  </html>
