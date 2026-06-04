@@ -454,7 +454,7 @@
   <div class="toolbar-left">
     <div>
       <h1>ANES</h1>
-      <p>Estructura Organizativa Â· Versión Final</p>
+      <p>Estructura Organizativa · Versión Final</p>
     </div>
     <span class="edit-badge">â Editable</span>
   </div>
@@ -476,7 +476,7 @@
   <div class="leg-item"><span class="leg-dot" style="background:var(--purple)"></span> A evaluar</div>
   <div class="leg-item"><span class="leg-dot" style="background:var(--red)"></span> Se derogan</div>
   <div class="leg-item" style="margin-left:auto; color:var(--blue); font-style:italic; text-transform:none; letter-spacing:0; font-weight:400;">
-    Clic en el nombre para editar Â· ð para vincular CV
+    Clic en el nombre para editar · ð para vincular CV
   </div>
 </div>
 
@@ -588,7 +588,7 @@
 âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ib</span>
-  Coordinación Legal y Administrativa â Enlace Hospitalario Â· Gestión Estratégica
+  Coordinación Legal y Administrativa â Enlace Hospitalario · Gestión Estratégica
 </div>
 
 <div class="content">
@@ -701,7 +701,7 @@
 âââââââââââââââââââââââââââââââââââââââââââ -->
 <div class="section-header">
   <span class="annex-tag">ANEXO Ic</span>
-  Adquisiciones Â· Finanzas y Presupuesto Â· Asuntos Jurídicos Â· RRHH Â· TIC
+  Adquisiciones · Finanzas y Presupuesto · Asuntos Jurídicos · RRHH · TIC
 </div>
 
 <div class="content">
@@ -838,8 +838,8 @@
 
 <!-- FOOTER -->
 <div style="background:var(--navy); color:rgba(255,255,255,0.4); padding:10px 28px; font-size:9px; display:flex; justify-content:space-between; border-top:3px solid var(--gold); margin-top:16px;">
-  <span>ANES Â· Administración Nacional de Establecimientos de Salud Â· Ministerio de Salud</span>
-  <span>Planilla Anexa al Artículo XÂ° Â· Anexos Ia / Ib / Ic Â· Versión Final con Designaciones</span>
+  <span>ANES · Administración Nacional de Establecimientos de Salud · Ministerio de Salud</span>
+  <span>Planilla Anexa al Artículo XÂ° · Anexos Ia / Ib / Ic · Versión Final con Designaciones</span>
 </div>
 
 <!-- CV MODAL -->
@@ -1190,7 +1190,7 @@ function openCV(nodeId, e) {
   const label = input ? (input.dataset.label || nodeId) : nodeId;
   const name  = input ? (input.value || 'â') : 'â';
   document.getElementById('cvModalTitle').textContent = 'Vincular CV';
-  document.getElementById('cvModalSub').textContent   = label + (name && name !== 'â' ? ' Â· ' + name : '');
+  document.getElementById('cvModalSub').textContent   = label + (name && name !== 'â' ? ' · ' + name : '');
   document.getElementById('cvUrl').value  = '';
   document.getElementById('cvFile').value = '';
   const existing  = cvStore[nodeId];
@@ -1281,4 +1281,4 @@ function showToast(msg) {
 </script>
 
 </body>
-            </html>
+</html>
